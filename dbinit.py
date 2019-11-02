@@ -91,7 +91,7 @@ INIT_STATEMENTS = [
       owner_nickname text,
       city text,
       country text,
-      model text
+      model_id int
   );
 
   CREATE TABLE IF NOT EXISTS "SupportWorker" (
@@ -169,7 +169,7 @@ ALTER TABLE "Bikes" ADD FOREIGN KEY ("city") REFERENCES "City" ("city_name");
 
 ALTER TABLE "Bikes" ADD FOREIGN KEY ("country") REFERENCES "Country" ("country_name");
 
-ALTER TABLE "Bikes" ADD FOREIGN KEY ("model") REFERENCES "Model" ("model_id");
+ALTER TABLE "Bikes" ADD FOREIGN KEY ("model_id") REFERENCES "Model" ("model_id");
 
 ALTER TABLE "Bike_Comment" ADD FOREIGN KEY ("bike_id") REFERENCES "Bikes" ("bike_id");
 
