@@ -108,7 +108,7 @@ INIT_STATEMENTS = [
   "profil_id" int PRIMARY KEY,
   "name" text,
   "surname" text,
-  "profil_nickname" text,
+  "profil_nickname" text UNIQUE,
   "profil_image" text,
   "number_of_bikes" int,
   "number_of_deals" int,
