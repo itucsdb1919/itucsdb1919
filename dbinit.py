@@ -103,6 +103,108 @@ INIT_STATEMENTS = [
     average_respond_time float,
     contact int
   );
+
+  CREATE TABLE IF NOT EXISTS "Profil" (
+  "profil_id" int PRIMARY KEY,
+  "name" text,
+  "surname" text,
+  "profil_nickname" text,
+  "profil_image" text,
+  "number_of_bikes" int,
+  "number_of_deals" int,
+  "comments" Table,
+  "contact" Table
+);
+
+CREATE TABLE IF NOT EXISTS "Deals" (
+  "deal_id" int PRIMARY KEY,
+  "price" float,
+  "payment_method" text,
+  "date_taken" timestamp,
+  "date_return" timestamp,
+  "duration_as_hour" int,
+  "is_active" boolean,
+  "owner_nickname" text,
+  "renter_nickname" text,
+  "owner_phone" int,
+  "renter_phone" int,
+  "bike_id" int,
+  "city" text,
+  "Country" text
+);
+
+CREATE TABLE IF NOT EXISTS "Comments" (
+  "comment_id" SERIAL PRIMARY KEY,
+  "comment" text,
+  "title" text,
+  "image_url" text,
+  "writen_date" datetime,
+  "up_vote" int,
+  "down_vote" int,
+  "writer_nickname" text,
+  "bike_id" int
+);
+
+ALTER TABLE "Contact" ADD FOREIGN KEY ("country") REFERENCES "Country" ("country_name");
+
+ALTER TABLE "Contact" ADD FOREIGN KEY ("profil") REFERENCES "Profil" ("profil_id");
+
+ALTER TABLE "Contact" ADD FOREIGN KEY ("city") REFERENCES "City" ("city_name");
+
+ALTER TABLE "Brand" ADD FOREIGN KEY ("country") REFERENCES "Country" ("country_name");
+
+ALTER TABLE "Brand" ADD FOREIGN KEY ("city") REFERENCES "City" ("city_name");
+
+ALTER TABLE "Model" ADD FOREIGN KEY ("brand") REFERENCES "Brand" ("brand_name");
+
+ALTER TABLE "Model" ADD FOREIGN KEY ("country") REFERENCES "Country" ("country_name");
+
+ALTER TABLE "City" ADD FOREIGN KEY ("country") REFERENCES "Country" ("country_name");
+
+ALTER TABLE "Bikes" ADD FOREIGN KEY ("parts_id") REFERENCES "Parts" ("parts_id");
+
+ALTER TABLE "Bikes" ADD FOREIGN KEY ("owner_nickname") REFERENCES "Profil" ("profil_nickname");
+
+ALTER TABLE "Bikes" ADD FOREIGN KEY ("city") REFERENCES "City" ("city_name");
+
+ALTER TABLE "Bikes" ADD FOREIGN KEY ("country") REFERENCES "Country" ("country_name");
+
+ALTER TABLE "Bikes" ADD FOREIGN KEY ("model") REFERENCES "Model" ("model_id");
+
+ALTER TABLE "Bike_Comment" ADD FOREIGN KEY ("bike_id") REFERENCES "Bikes" ("bike_id");
+
+ALTER TABLE "Bike_Comment" ADD FOREIGN KEY ("comment_id") REFERENCES "Comments" ("comment_id");
+
+ALTER TABLE "Bike_images" ADD FOREIGN KEY ("bike_id") REFERENCES "Bikes" ("bike_id");
+
+ALTER TABLE "Comments" ADD FOREIGN KEY ("writer_nickname") REFERENCES "Profil" ("profil_nickname");
+
+ALTER TABLE "Comments" ADD FOREIGN KEY ("bike_id") REFERENCES "Bikes" ("bike_id");
+
+ALTER TABLE "SupportTickets" ADD FOREIGN KEY ("writer_nickname") REFERENCES "Profil" ("profil_nickname");
+
+ALTER TABLE "SupportTickets" ADD FOREIGN KEY ("support_worker_id") REFERENCES "SupportWorker" ("support_worker_id");
+
+ALTER TABLE "SupportWorker" ADD FOREIGN KEY ("contact") REFERENCES "Contact" ("contact_id");
+
+ALTER TABLE "Profil" ADD FOREIGN KEY ("comments") REFERENCES "Comments" ("comment_id");
+
+ALTER TABLE "Profil" ADD FOREIGN KEY ("contact") REFERENCES "Contact" ("contact_id");
+
+ALTER TABLE "Deals" ADD FOREIGN KEY ("owner_nickname") REFERENCES "Profil" ("profil_nickname");
+
+ALTER TABLE "Deals" ADD FOREIGN KEY ("renter_nickname") REFERENCES "Profil" ("profil_nickname");
+
+ALTER TABLE "Deals" ADD FOREIGN KEY ("owner_phone") REFERENCES "Contact" ("phone_num");
+
+ALTER TABLE "Deals" ADD FOREIGN KEY ("renter_phone") REFERENCES "Contact" ("phone_num");
+
+ALTER TABLE "Deals" ADD FOREIGN KEY ("bike_id") REFERENCES "Bikes" ("bike_id");
+
+ALTER TABLE "Deals" ADD FOREIGN KEY ("city") REFERENCES "City" ("city_name");
+
+ALTER TABLE "Deals" ADD FOREIGN KEY ("Country") REFERENCES "Country" ("country_name");
+
   """
 ]
 
