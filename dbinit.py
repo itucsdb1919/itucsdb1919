@@ -38,9 +38,9 @@ INIT_STATEMENTS = [
       "pedal" text
     );
 
-      CREATE TABLE IF NOT EXISTS "Contact" (
+    CREATE TABLE IF NOT EXISTS "Contact" (
     contact_id SERIAL PRIMARY KEY,
-    phone_num char(10),
+    phone_num char(10) UNIQUE,
     e_mail text,
     is_active boolean,
     instagram_url text,
