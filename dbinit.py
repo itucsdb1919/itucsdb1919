@@ -6,7 +6,7 @@ import psycopg2 as dbapi2
 
 INIT_STATEMENTS = [
     """
-    CREATE TABLE "Brand" (
+    CREATE TABLE IF NOT EXISTS "Brand" (
       "brand_name" text PRIMARY KEY,
       "web_site" text,
       "logo_url" text,
@@ -17,7 +17,7 @@ INIT_STATEMENTS = [
       "city" text
     );
 
-    CREATE TABLE "Model" (
+    CREATE TABLE IF NOT EXISTS "Model" (
       "model_id" SERIAL PRIMARY KEY,
       "model_name" text,
       "year" int,
@@ -28,7 +28,7 @@ INIT_STATEMENTS = [
       "country" text
     );
     
-    CREATE TABLE "Parts" (
+    CREATE TABLE IF NOT EXISTS "Parts" (
       "parts_id" SERIAL PRIMARY KEY,
       "gidon" text,
       "aktarici" text,
@@ -38,7 +38,7 @@ INIT_STATEMENTS = [
       "pedal" text
     );
 
-      CREATE TABLE Contact (
+      CREATE TABLE IF NOT EXISTS Contact (
     contact_id SERIAL PRIMARY KEY,
     phone_num char(10),
     e_mail text,
@@ -51,10 +51,10 @@ INIT_STATEMENTS = [
     city text
   );
 
-  CREATE TABLE SupportTickets (
+  CREATE TABLE IF NOT EXISTS SupportTickets (
     support_tickets_id SERIAL PRIMARY KEY,
     writer_nickname text,
-    writen_date datetime,
+    writen_date timestamp,
     support_text text,
     topic text,
     satisfaction_score int,
@@ -62,7 +62,7 @@ INIT_STATEMENTS = [
     support_worker_id int
   );
 
-  CREATE TABLE City (
+  CREATE TABLE IF NOT EXISTS City (
     city_name text PRIMARY KEY,
     rank_between_cities int,
     overallscore int,
@@ -70,7 +70,7 @@ INIT_STATEMENTS = [
     number_of_bikes int,
     country text
   );
-  
+
     """
 ]
 
