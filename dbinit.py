@@ -138,7 +138,7 @@ CREATE TABLE IF NOT EXISTS "Comments" (
   "comment" text,
   "title" text,
   "image_url" text,
-  "writen_date" datetime,
+  "writen_date" timestamp,
   "up_vote" int,
   "down_vote" int,
   "writer_nickname" text,
