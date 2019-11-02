@@ -12,6 +12,7 @@ INIT_STATEMENTS = [
 
 def initialize(url):
     print ("test debug")
+    print("test debug muhammed")
     with dbapi2.connect(url , sslmode='require') as connection:
         cursor = connection.cursor()
         for statement in INIT_STATEMENTS:
