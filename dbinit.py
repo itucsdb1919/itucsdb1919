@@ -112,8 +112,8 @@ INIT_STATEMENTS = [
   "profil_image" text,
   "number_of_bikes" int,
   "number_of_deals" int,
-  "comments" Table,
-  "contact" Table
+  "comments" int,
+  "contact" int
 );
 
 CREATE TABLE IF NOT EXISTS "Deals" (
