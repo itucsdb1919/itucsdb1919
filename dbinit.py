@@ -88,10 +88,10 @@ INIT_STATEMENTS = [
     price float,
     is_active boolean,
     parts_id int,
-      owner_nickname text,
-      city text,
-      country text,
-      model_id int
+    owner_nickname text,
+    city text,
+    country text,
+    model_id int
   );
 
   CREATE TABLE IF NOT EXISTS "SupportWorker" (
@@ -143,6 +143,17 @@ CREATE TABLE IF NOT EXISTS "Comments" (
   "down_vote" int,
   "writer_nickname" text,
   "bike_id" int
+);
+
+CREATE TABLE "Bike_Comment" (
+  "bike_id" int,
+  "comment_id" int,
+  PRIMARY KEY ("bike_id", "comment_id")
+);
+
+CREATE TABLE "Bike_images" (
+  "bike_id" int PRIMARY KEY,
+  "image_url" text
 );
 
 ALTER TABLE "Contact" ADD FOREIGN KEY ("country") REFERENCES "Country" ("country_name");
