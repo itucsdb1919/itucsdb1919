@@ -187,62 +187,62 @@ CREATE TABLE "Bike_images" (
 """
 ALTER TABLE "Contact" ADD FOREIGN KEY ("country") REFERENCES "Country" ("country_name");
 """
-# ,
-# """
-# ALTER TABLE "Contact" ADD FOREIGN KEY ("profil") REFERENCES "Profil" ("profil_id");
-# """
-# ,
-# """
-# ALTER TABLE "Contact" ADD FOREIGN KEY ("city") REFERENCES "City" ("city_name");
-# """
-# ,
-# """
-# ALTER TABLE "Brand" ADD FOREIGN KEY ("country") REFERENCES "Country" ("country_name");
-# """
-# ,
-# """
-# ALTER TABLE "Brand" ADD FOREIGN KEY ("city") REFERENCES "City" ("city_name");
-# """
-# ,
-# """
-# ALTER TABLE "Model" ADD FOREIGN KEY ("brand") REFERENCES "Brand" ("brand_name");
-# """
-# ,
-# """
-# ALTER TABLE "Model" ADD FOREIGN KEY ("country") REFERENCES "Country" ("country_name");
-# """
-# ,
-# """
-# ALTER TABLE "City" ADD FOREIGN KEY ("country") REFERENCES "Country" ("country_name");
-# """
-# ,
-# """
-# ALTER TABLE "Bikes" ADD FOREIGN KEY ("parts_id") REFERENCES "Parts" ("parts_id");
-# """
-# ,
-# """
-# ALTER TABLE "Bikes" ADD FOREIGN KEY ("owner_nickname") REFERENCES "Profil" ("profil_nickname");
-# """
-# ,
-# """
-# ALTER TABLE "Bikes" ADD FOREIGN KEY ("city") REFERENCES "City" ("city_name");
-# """
-# ,
-# """
-# ALTER TABLE "Bikes" ADD FOREIGN KEY ("country") REFERENCES "Country" ("country_name");
-# """
-# ,
-# """
-# ALTER TABLE "Bikes" ADD FOREIGN KEY ("model_id") REFERENCES "Model" ("model_id");
-# """
-# ,
-# """
-# ALTER TABLE "Bike_Comment" ADD FOREIGN KEY ("bike_id") REFERENCES "Bikes" ("bike_id");
-# """
-# ,
-# """
-# ALTER TABLE "Bike_Comment" ADD FOREIGN KEY ("comment_id") REFERENCES "Comments" ("comment_id");
-# """
+,
+"""
+ALTER TABLE "Contact" ADD FOREIGN KEY ("profil") REFERENCES "Profil" ("profil_id");
+"""
+,
+"""
+ALTER TABLE "Contact" ADD FOREIGN KEY ("city") REFERENCES "City" ("city_name");
+"""
+,
+"""
+ALTER TABLE "Brand" ADD FOREIGN KEY ("country") REFERENCES "Country" ("country_name");
+"""
+,
+"""
+ALTER TABLE "Brand" ADD FOREIGN KEY ("city") REFERENCES "City" ("city_name");
+"""
+,
+"""
+ALTER TABLE "Model" ADD FOREIGN KEY ("brand") REFERENCES "Brand" ("brand_name");
+"""
+,
+"""
+ALTER TABLE "Model" ADD FOREIGN KEY ("country") REFERENCES "Country" ("country_name");
+"""
+,
+"""
+ALTER TABLE "City" ADD FOREIGN KEY ("country") REFERENCES "Country" ("country_name");
+"""
+,
+"""
+ALTER TABLE "Bikes" ADD FOREIGN KEY ("parts_id") REFERENCES "Parts" ("parts_id");
+"""
+,
+"""
+ALTER TABLE "Bikes" ADD FOREIGN KEY ("owner_nickname") REFERENCES "Profil" ("profil_nickname");
+"""
+,
+"""
+ALTER TABLE "Bikes" ADD FOREIGN KEY ("city") REFERENCES "City" ("city_name");
+"""
+,
+"""
+ALTER TABLE "Bikes" ADD FOREIGN KEY ("country") REFERENCES "Country" ("country_name");
+"""
+,
+"""
+ALTER TABLE "Bikes" ADD FOREIGN KEY ("model_id") REFERENCES "Model" ("model_id");
+"""
+,
+"""
+ALTER TABLE "Bike_Comment" ADD FOREIGN KEY ("bike_id") REFERENCES "Bikes" ("bike_id");
+"""
+,
+"""
+ALTER TABLE "Bike_Comment" ADD FOREIGN KEY ("comment_id") REFERENCES "Comments" ("comment_id");
+"""
 # ,
 # """
 # ALTER TABLE "Bike_images" ADD FOREIGN KEY ("bike_id") REFERENCES "Bikes" ("bike_id");
