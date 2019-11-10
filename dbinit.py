@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS "Parts" (
 """
 CREATE TABLE IF NOT EXISTS "Contact" (
   contact_id SERIAL PRIMARY KEY,
-  phone_num char(10) UNIQUE,
+  phone_num int UNIQUE,
   e_mail text,
   is_active boolean,
   instagram_url text,
@@ -170,7 +170,7 @@ CREATE TABLE IF NOT EXISTS "Comments" (
 """
 ,
 """
-CREATE TABLE "Bike_Comment" (
+CREATE TABLE IF NOT EXISTS "Bike_Comment" (
   "bike_id" int,
   "comment_id" int,
   PRIMARY KEY ("bike_id", "comment_id")
@@ -178,7 +178,7 @@ CREATE TABLE "Bike_Comment" (
 """
 ,
 """
-CREATE TABLE "Bike_images" (
+CREATE TABLE IF NOT EXISTS "Bike_images" (
   "bike_id" int PRIMARY KEY,
   "image_url" text
 );
@@ -243,67 +243,66 @@ ALTER TABLE "Bike_Comment" ADD FOREIGN KEY ("bike_id") REFERENCES "Bikes" ("bike
 """
 ALTER TABLE "Bike_Comment" ADD FOREIGN KEY ("comment_id") REFERENCES "Comments" ("comment_id");
 """
-# ,
-# """
-# ALTER TABLE "Bike_images" ADD FOREIGN KEY ("bike_id") REFERENCES "Bikes" ("bike_id");
-# """
-# ,
-# """
-# ALTER TABLE "Comments" ADD FOREIGN KEY ("writer_nickname") REFERENCES "Profil" ("profil_nickname");
-# """
-# ,
-# """
-# ALTER TABLE "Comments" ADD FOREIGN KEY ("bike_id") REFERENCES "Bikes" ("bike_id");
-# """
-# ,
-# """
-# ALTER TABLE "SupportTickets" ADD FOREIGN KEY ("writer_nickname") REFERENCES "Profil" ("profil_nickname");
-# """
-# ,
-# """
-# ALTER TABLE "SupportTickets" ADD FOREIGN KEY ("support_worker_id") REFERENCES "SupportWorker" ("support_worker_id");
-# """
-# ,
-# """
-# ALTER TABLE "SupportWorker" ADD FOREIGN KEY ("contact") REFERENCES "Contact" ("contact_id");
-# """
-# ,
-# """
-# ALTER TABLE "Profil" ADD FOREIGN KEY ("comments") REFERENCES "Comments" ("comment_id");
-# """
-# ,
-# """
-# ALTER TABLE "Profil" ADD FOREIGN KEY ("contact") REFERENCES "Contact" ("contact_id");
-# """
-# ,
-# """
-# ALTER TABLE "Deals" ADD FOREIGN KEY ("owner_nickname") REFERENCES "Profil" ("profil_nickname");
-# """
-# ,
-# """
-# ALTER TABLE "Deals" ADD FOREIGN KEY ("renter_nickname") REFERENCES "Profil" ("profil_nickname");
-# """
-# ,
-# """
-# ALTER TABLE "Deals" ADD FOREIGN KEY ("owner_phone") REFERENCES "Contact" ("phone_num");
-# """
-# ,
-# """
-# ALTER TABLE "Deals" ADD FOREIGN KEY ("renter_phone") REFERENCES "Contact" ("phone_num");
-# """
-# ,
-# """
-# ALTER TABLE "Deals" ADD FOREIGN KEY ("bike_id") REFERENCES "Bikes" ("bike_id");
-# """
-# ,
-# """
-# ALTER TABLE "Deals" ADD FOREIGN KEY ("city") REFERENCES "City" ("city_name");
-# """
-# ,
-# """
-# ALTER TABLE "Deals" ADD FOREIGN KEY ("Country") REFERENCES "Country" ("country_name");
-
-# """
+,
+"""
+ALTER TABLE "Bike_images" ADD FOREIGN KEY ("bike_id") REFERENCES "Bikes" ("bike_id");
+"""
+,
+"""
+ALTER TABLE "Comments" ADD FOREIGN KEY ("writer_nickname") REFERENCES "Profil" ("profil_nickname");
+"""
+,
+"""
+ALTER TABLE "Comments" ADD FOREIGN KEY ("bike_id") REFERENCES "Bikes" ("bike_id");
+"""
+,
+"""
+ALTER TABLE "SupportTickets" ADD FOREIGN KEY ("writer_nickname") REFERENCES "Profil" ("profil_nickname");
+"""
+,
+"""
+ALTER TABLE "SupportTickets" ADD FOREIGN KEY ("support_worker_id") REFERENCES "SupportWorker" ("support_worker_id");
+"""
+,
+"""
+ALTER TABLE "SupportWorker" ADD FOREIGN KEY ("contact") REFERENCES "Contact" ("contact_id");
+"""
+,
+"""
+ALTER TABLE "Profil" ADD FOREIGN KEY ("comments") REFERENCES "Comments" ("comment_id");
+"""
+,
+"""
+ALTER TABLE "Profil" ADD FOREIGN KEY ("contact") REFERENCES "Contact" ("contact_id");
+"""
+,
+"""
+ALTER TABLE "Deals" ADD FOREIGN KEY ("owner_nickname") REFERENCES "Profil" ("profil_nickname");
+"""
+,
+"""
+ALTER TABLE "Deals" ADD FOREIGN KEY ("renter_nickname") REFERENCES "Profil" ("profil_nickname");
+"""
+,
+"""
+ALTER TABLE "Deals" ADD FOREIGN KEY ("owner_phone") REFERENCES "Contact" ("phone_num");
+"""
+,
+"""
+ALTER TABLE "Deals" ADD FOREIGN KEY ("renter_phone") REFERENCES "Contact" ("phone_num");
+"""
+,
+"""
+ALTER TABLE "Deals" ADD FOREIGN KEY ("bike_id") REFERENCES "Bikes" ("bike_id");
+"""
+,
+"""
+ALTER TABLE "Deals" ADD FOREIGN KEY ("city") REFERENCES "City" ("city_name");
+"""
+,
+"""
+ALTER TABLE "Deals" ADD FOREIGN KEY ("Country") REFERENCES "Country" ("country_name");
+"""
 ]
 
 
