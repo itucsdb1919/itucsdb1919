@@ -283,27 +283,26 @@ ALTER TABLE "Deals" ADD FOREIGN KEY ("owner_nickname") REFERENCES "Profil" ("pro
 """
 ALTER TABLE "Deals" ADD FOREIGN KEY ("renter_nickname") REFERENCES "Profil" ("profil_nickname");
 """
-# ,
-# """
-# ALTER TABLE "Deals" ADD FOREIGN KEY ("owner_phone") REFERENCES "Contact" ("phone_num");
-# """
-# ,
-# """
-# ALTER TABLE "Deals" ADD FOREIGN KEY ("renter_phone") REFERENCES "Contact" ("phone_num");
-# """
-# ,
-# """
-# ALTER TABLE "Deals" ADD FOREIGN KEY ("bike_id") REFERENCES "Bikes" ("bike_id");
-# """
-# ,
-# """
-# ALTER TABLE "Deals" ADD FOREIGN KEY ("city") REFERENCES "City" ("city_name");
-# """
-# ,
-# """
-# ALTER TABLE "Deals" ADD FOREIGN KEY ("Country") REFERENCES "Country" ("country_name");
-
-# """
+,
+"""
+ALTER TABLE "Deals" ADD FOREIGN KEY ("owner_phone") REFERENCES "Contact" ("phone_num");
+"""
+,
+"""
+ALTER TABLE "Deals" ADD FOREIGN KEY ("renter_phone") REFERENCES "Contact" ("phone_num");
+"""
+,
+"""
+ALTER TABLE "Deals" ADD FOREIGN KEY ("bike_id") REFERENCES "Bikes" ("bike_id");
+"""
+,
+"""
+ALTER TABLE "Deals" ADD FOREIGN KEY ("city") REFERENCES "City" ("city_name");
+"""
+,
+"""
+ALTER TABLE "Deals" ADD FOREIGN KEY ("Country") REFERENCES "Country" ("country_name");
+"""
 ]
 
 
