@@ -170,7 +170,7 @@ CREATE TABLE IF NOT EXISTS "Comments" (
 """
 ,
 """
-CREATE TABLE "Bike_Comment" (
+CREATE TABLE IF NOT EXISTS "Bike_Comment" (
   "bike_id" int,
   "comment_id" int,
   PRIMARY KEY ("bike_id", "comment_id")
@@ -178,7 +178,7 @@ CREATE TABLE "Bike_Comment" (
 """
 ,
 """
-CREATE TABLE "Bike_images" (
+CREATE TABLE IF NOT EXISTS "Bike_images" (
   "bike_id" int PRIMARY KEY,
   "image_url" text
 );
