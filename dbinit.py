@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS "Parts" (
 """
 CREATE TABLE IF NOT EXISTS "Contact" (
   contact_id SERIAL PRIMARY KEY,
-  phone_num char(10) UNIQUE,
+  phone_num int UNIQUE,
   e_mail text,
   is_active boolean,
   instagram_url text,
