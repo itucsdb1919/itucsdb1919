@@ -12,10 +12,9 @@ def connect():
 
         # display tables
         print('PostgreSQL database tables:')
-        cur.execute("""SELECT table_name FROM information_schema.tables
-               WHERE table_schema = 'public'""")
-        for table in cur.fetchall():
-            print(table)
+        cur.execute("""SELECT * FROM Country""")
+        for element in cur.fetchall():
+            print(element)
 
         # close the communication with the PostgreSQL
         cur.close()
