@@ -50,22 +50,16 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
             <th>Price</th>
             <th>Is Active</th>
             <th>Parts</th>
-            <th>Owner</th>
-            <th>City</th>
-            <th>Country</th>
           </tr>
-           {% for bike in bikes %}
+           {% for state in bikes %}
           <tr>
-            <th>{{bike[0]}}</th>
-            <th>{{bike[1]}}</th>
-            <th>{{bike[2]}}</th>
-            <th>{{bike[3]}}</th>
-            <th>{{bike[4]}}</th>
-            <th>{{bike[5]}}</th>
-            <th>{{bike[6]}}</th>
-            <th>{{bike[7]}}</th>
-            <th>{{bike[8]}}</th>
-            <th>{{bike[9]}}</th>
+            <th>{{state[0]}}</th>
+            <th>{{state[1]}}</th>
+            <th>{{state[2]}}</th>
+            <th>{{state[3]}}</th>
+            <th>{{state[4]}}</th>
+            <th>{{state[5]}}</th>
+            <th>{{state[6]}}</th>
           </tr>
           {% endfor %}
       </table>
