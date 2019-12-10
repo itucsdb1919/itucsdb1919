@@ -185,123 +185,123 @@ CREATE TABLE IF NOT EXISTS "Bike_images" (
 """
 ,
 """
-ALTER TABLE "Contact" ADD FOREIGN KEY IF NOT EXISTS ("country") REFERENCES "Country" ("country_name");
+ALTER TABLE "Contact" ADD FOREIGN KEY ("country") REFERENCES "Country" ("country_name");
 """
 ,
 """
-ALTER TABLE "Contact" ADD FOREIGN KEY IF NOT EXISTS ("profil") REFERENCES "Profil" ("profil_id");
+ALTER TABLE "Contact" ADD FOREIGN KEY ("profil") REFERENCES "Profil" ("profil_id");
 """
 ,
 """
-ALTER TABLE "Contact" ADD FOREIGN KEY IF NOT EXISTS ("city") REFERENCES "City" ("city_name");
+ALTER TABLE "Contact" ADD FOREIGN KEY ("city") REFERENCES "City" ("city_name");
 """
 ,
 """
-ALTER TABLE "Brand" ADD FOREIGN KEY IF NOT EXISTS ("country") REFERENCES "Country" ("country_name");
+ALTER TABLE "Brand" ADD FOREIGN KEY ("country") REFERENCES "Country" ("country_name");
 """
 ,
 """
-ALTER TABLE "Brand" ADD FOREIGN KEY IF NOT EXISTS ("city") REFERENCES "City" ("city_name");
+ALTER TABLE "Brand" ADD FOREIGN KEY ("city") REFERENCES "City" ("city_name");
 """
 ,
 """
-ALTER TABLE "Model" ADD FOREIGN KEY IF NOT EXISTS ("brand") REFERENCES "Brand" ("brand_name");
+ALTER TABLE "Model" ADD FOREIGN KEY ("brand") REFERENCES "Brand" ("brand_name");
 """
 ,
 """
-ALTER TABLE "Model" ADD FOREIGN KEY IF NOT EXISTS ("country") REFERENCES "Country" ("country_name");
+ALTER TABLE "Model" ADD FOREIGN KEY ("country") REFERENCES "Country" ("country_name");
 """
 ,
 """
-ALTER TABLE "City" ADD FOREIGN KEY IF NOT EXISTS ("country") REFERENCES "Country" ("country_name");
+ALTER TABLE "City" ADD FOREIGN KEY ("country") REFERENCES "Country" ("country_name");
 """
 ,
 """
-ALTER TABLE "Bikes" ADD FOREIGN KEY IF NOT EXISTS ("parts_id") REFERENCES "Parts" ("parts_id");
+ALTER TABLE "Bikes" ADD FOREIGN KEY ("parts_id") REFERENCES "Parts" ("parts_id");
 """
 ,
 """
-ALTER TABLE "Bikes" ADD FOREIGN KEY IF NOT EXISTS ("owner_nickname") REFERENCES "Profil" ("profil_nickname");
+ALTER TABLE "Bikes" ADD FOREIGN KEY ("owner_nickname") REFERENCES "Profil" ("profil_nickname");
 """
 ,
 """
-ALTER TABLE "Bikes" ADD FOREIGN KEY IF NOT EXISTS ("city") REFERENCES "City" ("city_name");
+ALTER TABLE "Bikes" ADD FOREIGN KEY ("city") REFERENCES "City" ("city_name");
 """
 ,
 """
-ALTER TABLE "Bikes" ADD FOREIGN KEY IF NOT EXISTS ("country") REFERENCES "Country" ("country_name");
+ALTER TABLE "Bikes" ADD FOREIGN KEY ("country") REFERENCES "Country" ("country_name");
 """
 ,
 """
-ALTER TABLE "Bikes" ADD FOREIGN KEY IF NOT EXISTS ("model_id") REFERENCES "Model" ("model_id");
+ALTER TABLE "Bikes" ADD FOREIGN KEY ("model_id") REFERENCES "Model" ("model_id");
 """
 ,
 """
-ALTER TABLE "Bike_Comment" ADD FOREIGN KEY IF NOT EXISTS ("bike_id") REFERENCES "Bikes" ("bike_id");
+ALTER TABLE "Bike_Comment" ADD FOREIGN KEY ("bike_id") REFERENCES "Bikes" ("bike_id");
 """
 ,
 """
-ALTER TABLE "Bike_Comment" ADD FOREIGN KEY IF NOT EXISTS ("comment_id") REFERENCES "Comments" ("comment_id");
+ALTER TABLE "Bike_Comment" ADD FOREIGN KEY ("comment_id") REFERENCES "Comments" ("comment_id");
 """
 ,
 """
-ALTER TABLE "Bike_images" ADD FOREIGN KEY IF NOT EXISTS ("bike_id") REFERENCES "Bikes" ("bike_id");
+ALTER TABLE "Bike_images" ADD FOREIGN KEY ("bike_id") REFERENCES "Bikes" ("bike_id");
 """
 ,
 """
-ALTER TABLE "Comments" ADD FOREIGN KEY IF NOT EXISTS ("writer_nickname") REFERENCES "Profil" ("profil_nickname");
+ALTER TABLE "Comments" ADD FOREIGN KEY ("writer_nickname") REFERENCES "Profil" ("profil_nickname");
 """
 ,
 """
-ALTER TABLE "Comments" ADD FOREIGN KEY IF NOT EXISTS ("bike_id") REFERENCES "Bikes" ("bike_id");
+ALTER TABLE "Comments" ADD FOREIGN KEY ("bike_id") REFERENCES "Bikes" ("bike_id");
 """
 ,
 """
-ALTER TABLE "SupportTickets" ADD FOREIGN KEY IF NOT EXISTS ("writer_nickname") REFERENCES "Profil" ("profil_nickname");
+ALTER TABLE "SupportTickets" ADD FOREIGN KEY ("writer_nickname") REFERENCES "Profil" ("profil_nickname");
 """
 ,
 """
-ALTER TABLE "SupportTickets" ADD FOREIGN KEY IF NOT EXISTS ("support_worker_id") REFERENCES "SupportWorker" ("support_worker_id");
+ALTER TABLE "SupportTickets" ADD FOREIGN KEY ("support_worker_id") REFERENCES "SupportWorker" ("support_worker_id");
 """
 ,
 """
-ALTER TABLE "SupportWorker" ADD FOREIGN KEY IF NOT EXISTS ("contact") REFERENCES "Contact" ("contact_id");
+ALTER TABLE "SupportWorker" ADD FOREIGN KEY ("contact") REFERENCES "Contact" ("contact_id");
 """
 ,
 """
-ALTER TABLE "Profil" ADD FOREIGN KEY IF NOT EXISTS ("comments") REFERENCES "Comments" ("comment_id");
+ALTER TABLE "Profil" ADD FOREIGN KEY ("comments") REFERENCES "Comments" ("comment_id");
 """
 ,
 """
-ALTER TABLE "Profil" ADD FOREIGN KEY IF NOT EXISTS ("contact") REFERENCES "Contact" ("contact_id");
+ALTER TABLE "Profil" ADD FOREIGN KEY ("contact") REFERENCES "Contact" ("contact_id");
 """
 ,
 """
-ALTER TABLE "Deals" ADD FOREIGN KEY IF NOT EXISTS ("owner_nickname") REFERENCES "Profil" ("profil_nickname");
+ALTER TABLE "Deals" ADD FOREIGN KEY ("owner_nickname") REFERENCES "Profil" ("profil_nickname");
 """
 ,
 """
-ALTER TABLE "Deals" ADD FOREIGN KEY IF NOT EXISTS ("renter_nickname") REFERENCES "Profil" ("profil_nickname");
+ALTER TABLE "Deals" ADD FOREIGN KEY ("renter_nickname") REFERENCES "Profil" ("profil_nickname");
 """
 ,
 """
-ALTER TABLE "Deals" ADD FOREIGN KEY IF NOT EXISTS ("owner_phone") REFERENCES "Contact" ("phone_num");
+ALTER TABLE "Deals" ADD FOREIGN KEY ("owner_phone") REFERENCES "Contact" ("phone_num");
 """
 ,
 """
-ALTER TABLE "Deals" ADD FOREIGN KEY IF NOT EXISTS ("renter_phone") REFERENCES "Contact" ("phone_num");
+ALTER TABLE "Deals" ADD FOREIGN KEY ("renter_phone") REFERENCES "Contact" ("phone_num");
 """
 ,
 """
-ALTER TABLE "Deals" ADD FOREIGN KEY IF NOT EXISTS ("bike_id") REFERENCES "Bikes" ("bike_id");
+ALTER TABLE "Deals" ADD FOREIGN KEY ("bike_id") REFERENCES "Bikes" ("bike_id");
 """
 ,
 """
-ALTER TABLE "Deals" ADD FOREIGN KEY IF NOT EXISTS ("city") REFERENCES "City" ("city_name");
+ALTER TABLE "Deals" ADD FOREIGN KEY ("city") REFERENCES "City" ("city_name");
 """
 ,
 """
-ALTER TABLE "Deals" ADD FOREIGN KEY IF NOT EXISTS ("Country") REFERENCES "Country" ("country_name");
+ALTER TABLE "Deals" ADD FOREIGN KEY ("Country") REFERENCES "Country" ("country_name");
 """
 ]
 
