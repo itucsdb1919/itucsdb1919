@@ -28,8 +28,21 @@ if __name__ == '__main__':
 app = Flask(__name__)
 
 @app.route("/")
+@app.route("/home")
 def home_page():
     return render_template("homepage.html")
+
+@app.route("/bikes")
+def bike_page():
+    return render_template("bikes.html")
+
+@app.route("/statistics")
+def login_page():
+    return render_template("statistics.html")
+
+@app.route("/signup")
+def signup_page():
+    return render_template("signup.html")
 
 
 if __name__ == "__main__":
