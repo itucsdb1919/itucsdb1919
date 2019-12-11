@@ -33,7 +33,7 @@ body {
 }
 
 .dropdown .dropbtn {
-  font-size: 16px;  
+  font-size: 16px;
   border: none;
   outline: none;
   color: white;
@@ -91,7 +91,7 @@ body {
     <a href="home">Home</a>
     <a href="bikes">Bikes</a>
     <div class="dropdown">
-      <button class="dropbtn">General Info 
+      <button class="dropbtn">General Info
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-content">
@@ -99,7 +99,7 @@ body {
           <a href="countries">Countries</a>
           <a href="brands">Brands</a>
       </div>
-    </div> 
+    </div>
     <div id="sign">
         <a href="signin">Login</a>
         <a href="signup">Register</a>
@@ -111,22 +111,38 @@ body {
       <div class="w3-twothird">
          <table class="w3-table-all">
             <tr class = "table-headers">
-              <th>Image</th>
+              <th>Images</th>
               <th>Title</th>
               <th>Color</th>
+              <th>Frame Size</th>
+              <th>Price</th>
               <th>Owner</th>
-              <th>Rent</th>
-            {% for state in bikes %}
+                <th>City</th>
+                <th>Country</th>
+                <th>Model Year</th>
+                <th>Bike Type</th>
+                <th>Frame Material</th>
+            {% for state in detail %}
             <tr>
-              <th><img src={{state[3]}} style="max-height: 150px; max-width: 150px;"></th>
+              <th>
+                  <table>
+                      {% for image in images %}
+                      <tr>
+                          <th><img src={{image[0]}} style="max-height: 150px; max-width: 150px;"></th>
+                      </tr>
+                      {% endfor %}
+                  </table>
+              </th>
               <th>{{state[0]}}</th>
               <th>{{state[1]}}</th>
               <th>{{state[2]}}</th>
-              <th>
-                  <form action="" method="post">
-                      <button style="background-color: #f44336;" name="bike_id" type="submit" value="{{state[4]}}">Rent</button>
-                  </form>
-              </th>
+              <th>{{state[3]}}</th>
+              <th>{{state[4]}}</th>
+              <th>{{state[5]}}</th>
+              <th>{{state[6]}}</th>
+              <th>{{state[7]}}</th>
+              <th>{{state[8]}}</th>
+              <th>{{state[9]}}</th>
             </tr>
             {% endfor %}
            </table>

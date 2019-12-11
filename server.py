@@ -38,16 +38,24 @@ app = Flask(__name__)
 def home_page():
     return render_template("homepage.html")
 
-@app.route("/bikes")
+@app.route("/bikes", methods=['GET','POST'])
 def bike_page():
-    bikes = executeSQL("Select T1.title, T1.color,T1.owner_nickname, T3.image_url from \"Bikes\" as T1 LEFT JOIN \"Model\" as T2 ON T1.model_id = T2.model_id LEFT JOIN \"Bike_images\" as T3 ON T1.bike_id = T3.bike_id  WHERE T1.is_active ='yes'","select")
-    return render_template("bikes.html", bikes = bikes)
+    if request.method == "GET":
+        sqlCode ="Select T1.title, T1.color,T1.owner_nickname, T3.image_url, T1.bike_id from \"Bikes\" as T1 LEFT JOIN \"Model\" as T2 ON T1.model_id = T2.model_id LEFT JOIN( select bike_id, MIN(image_url) as image_url from \"Bike_images\" GROUP BY bike_id )T3 ON T1.bike_id = T3.bike_id WHERE T1.is_active ='yes'"
+        bikes = executeSQL(sqlCode, "select")
 
-@app.route('/bike_detail')
-def bike_detail():
-    sqlCode = "sorgu"
-    detail = executeSQL(sqlCode)
-    return render_template("bike_detail.html", detail = detail)
+        return render_template("bikes.html", bikes = bikes)
+    if request.method == "POST":
+        bike_id = request.form['bike_id']
+        detailSQL = "Select T1.title, T1.color,T1.frame_size,T1.price,T1.owner_nickname,T1.city,T1.country," \
+                    "T2.year,T2.bike_type,T2.frame_material from \"Bikes\" as T1 LEFT JOIN \"Model\" as T2 ON T1.model_id" \
+                    " = T2.model_id WHERE T1.is_active ='yes' AND T1.bike_id = " + bike_id
+        imagesSQL = "SELECT image_url FROM \"Bike_images\" WHERE bike_id = " + bike_id
+        detail = executeSQL(detailSQL, "select")
+        images = executeSQL(imagesSQL, "select")
+
+        return render_template("bike_detail.html", detail = detail, images = images)
+
 
 @app.route("/cities" , methods=['GET'])
 def statistics_city():
