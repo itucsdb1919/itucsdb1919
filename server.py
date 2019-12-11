@@ -62,7 +62,11 @@ def statistics_brand():
 
 @app.route("/signup")
 def signup_page():
-    return render_template("signup.html")
+    return render_template("signup.html",operation="register")
+
+@app.route("/signin")
+def signin_page():
+    return render_template("signup.html",operation="login")
 
 if __name__ == "__main__":
     app.run()
