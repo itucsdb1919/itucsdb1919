@@ -303,12 +303,12 @@ CREATE TABLE IF NOT EXISTS "Bike_images" (
 # ALTER TABLE "Deals" ADD FOREIGN KEY ("Country") REFERENCES "Country" ("country_name");
 # """
 
-def initialize(url):
-    with dbapi2.connect(url) as connection:
-        cursor = connection.cursor()
-        for statement in INIT_STATEMENTS:
-            cursor.execute(statement)
-        cursor.close()
+#def initialize(url):
+#    with dbapi2.connect(url) as connection:
+ #       cursor = connection.cursor()
+  #      for statement in INIT_STATEMENTS:
+   #         cursor.execute(statement)
+    #    cursor.close()
 
 
 if __name__ == "__main__":
