@@ -1,6 +1,7 @@
 
 from flask import Flask,render_template
 import psycopg2 as dbapi2
+from fl
 
 
 def executeSQL(sqlCode):
@@ -25,11 +26,6 @@ def executeSQL(sqlCode):
 #def insertBike(title, color, frame_size, price, is_active, parts_id ,owner_nickname, city, country, model_id):
 
 app = Flask(__name__)
-
-if __name__ == "__main__":
-    for element in executeSQL("""SELECT * FROM \"Country\""""):
-        print(element)
-
 
 @app.route("/")
 @app.route("/home")

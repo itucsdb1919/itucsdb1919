@@ -74,6 +74,15 @@ body {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+.table-headers{
+  background-color: #f44336 !important;
+  color:white;
+}
+.table-div{
+  max-width: 86%;
+  height: min-content;
+  margin-left: 7%;
+  margin-top: 3%;}
 </style>
 
 <body>
@@ -95,23 +104,39 @@ body {
         <a href="signin">Login</a>
         <a href="signup">Register</a>
     </div>
+  <a href="home">Home</a>
+  <a href="bikes">Bikes</a>
+  <div class="dropdown">
+    <button class="dropbtn">General Info 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+        <a href="cities">Cities</a>
+        <a href="countries">Countries</a>
+        <a href="brands">Brands</a>
+    </div>
+  </div> 
+  <div id="sign">
+      <a href="signin">Login</a>
+      <a href="signup">Register</a>
+  </div>
 </div>
 
-<div class="w3-row-padding w3-padding-64 w3-container">
+<div class="table-div">
     <div class="w3-content">
       <div class="w3-twothird">
          <table class="w3-table-all">
-            <tr>
+            <tr class = "table-headers">
               <th>Title</th>
               <th>Color</th>
               <th>Owner</th>
               <th>İmage</th>
             {% for state in bikes %}
             <tr>
+              <th><img src={{state[3]}} style="max-height: 80px; max-width: 80px;"></th>
               <th>{{state[0]}}</th>
               <th>{{state[1]}}</th>
               <th>{{state[2]}}</th>
-              <th><img src={{state[3]}} style="max-height: 80px; max-width: 80px;"></th>
             </tr>
             {% endfor %}
            </table>
