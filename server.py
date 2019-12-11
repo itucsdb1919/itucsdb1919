@@ -11,7 +11,6 @@ def executeSQL(sqlCode):
                               user="lwgysxzadqznqz", password="1d99ac08fda0c54c8e686f0057d88e65b9171c5bc3684551980e9b75ace378b9")
 
         cursor = connection.cursor()
-<<<<<<< HEAD
 
         # Execute SQL code
         cursor.execute(sqlCode)
@@ -24,31 +23,14 @@ def executeSQL(sqlCode):
         print("Error while connecting to PostgreSQL", error)
 
 #def insertBike(title, color, frame_size, price, is_active, parts_id ,owner_nickname, city, country, model_id):
-
-
-
-=======
-
-        # Execute SQL code
-        cursor.execute(sqlCode)
-        data = cursor.fetchall()
-        cursor.close()
-        connection.close()
-        return data
-
-    except (Exception, dbapi2.Error) as error:
-        print("Error while connecting to PostgreSQL", error)
-
-#def insertBike(title, color, frame_size, price, is_active, parts_id ,owner_nickname, city, country, model_id):
->>>>>>> 1b8a88b948d0dc70bae08c41deba51cc617537ca
 
 app = Flask(__name__)
 
+if __name__ == "__main__":
+    for element in executeSQL("""SELECT * FROM \"Country\""""):
+        print(element)
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 1b8a88b948d0dc70bae08c41deba51cc617537ca
 @app.route("/")
 @app.route("/home")
 def home_page():
@@ -57,8 +39,6 @@ def home_page():
 @app.route("/bikes")
 def bike_page():
     return render_template("bikes.html")
-<<<<<<< HEAD
-=======
 
 
 @app.route("/cities" , methods=['GET'])
@@ -82,18 +62,9 @@ def statistics_brand():
 @app.route("/signup")
 def signup_page():
     return render_template("signup.html")
->>>>>>> 1b8a88b948d0dc70bae08c41deba51cc617537ca
-
-
-@app.route("/statistics" , methods=['GET'])
-def statistics():
-    statistics = executeSQL("""SELECT * FROM \"Country\"""")
-    return render_template("statistics.html", statistics = statistics)
-
-
-@app.route("/signup")
-def signup_page():
-    return render_template("signup.html")
 
 if __name__ == "__main__":
     app.run()
+
+
+
