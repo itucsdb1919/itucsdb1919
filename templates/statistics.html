@@ -112,6 +112,19 @@ body {
               <th>Total Transaction</th>
               <th>Cities</th>
             </tr>
+            
+            {% for state in statistics %}
+            <tr>
+              <th>{{state[0]}}</th>
+              <th>{{state[1]}}</th>
+              <th>{{state[2]}}</th>
+              <th>{{state[3]}}</th>
+              <th>{{state[4]}}</th>
+              <th>{{state[5]}}</th>
+              <th>{{state[6]}}</th>
+            </tr>
+            {% endfor %}
+
             {% endif %}
             
             {% if name == "city" %}
@@ -123,6 +136,18 @@ body {
               <th>Bikes</th>
               <th>Country</th>
             </tr>
+            
+            {% for state in statistics %}
+            <tr>
+              <th>{{state[0]}}</th>
+              <th>{{state[1]}}</th>
+              <th>{{state[2]}}</th>
+              <th>{{state[3]}}</th>
+              <th>{{state[4]}}</th>
+              <th>{{state[5]}}</th>
+            </tr>
+            {% endfor %}
+
             {% endif %}
             
             {% if name == "brand" %}
@@ -136,7 +161,6 @@ body {
               <th>Country</th>
               <th>City</th>
             </tr>
-            {% endif %}
             {% for state in statistics %}
             <tr>
               <th>{{state[0]}}</th>
@@ -149,7 +173,9 @@ body {
               <th>{{state[7]}}</th>
             </tr>
             {% endfor %}
-        </table>
+
+            {% endif %}       
+           </table>
       </div>
   </div>
 
