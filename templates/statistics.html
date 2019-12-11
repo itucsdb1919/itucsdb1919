@@ -112,7 +112,18 @@ body {
               <th>Money Spent</th>
               <th>Cities</th>
             </tr>
-             {% endif %}
+            {% for state in statistics %}
+            <tr>
+              <th>{{state[0]}}</th>
+              <th>{{state[1]}}</th>
+              <th>{{state[2]}}</th>
+              <th>{{state[3]}}</th>
+              <th>{{state[4]}}</th>
+              <th>{{state[5]}}</th>
+              <th>{{state[6]}}</th>
+            </tr>
+            {% endfor %}
+            {% endif %}
             {% if name == "city" %}
             <tr>
               <th>City</th>
@@ -122,6 +133,16 @@ body {
               <th>Bikes</th>
               <th>Country</th>
             </tr>
+            {% for state in statistics %}
+            <tr>
+              <th>{{state[0]}}</th>
+              <th>{{state[1]}}</th>
+              <th>{{state[2]}}</th>
+              <th>{{state[3]}}</th>
+              <th>{{state[4]}}</th>
+              <th>{{state[5]}}</th>
+            </tr>
+            {% endfor %}
             {% endif %}
             
             {% if name == "brand" %}
@@ -135,12 +156,11 @@ body {
               <th>Country</th>
               <th>City</th>
             </tr>
-            {% endif %}
             {% for state in statistics %}
             <tr>
               <th>{{state[0]}}</th>
               <th>{{state[1]}}</th>
-              <th>{{state[2]}}</th>
+              <th><img src={{state[2]}} style="max-height: 80px; max-width: 80px;"></th>
               <th>{{state[3]}}</th>
               <th>{{state[4]}}</th>
               <th>{{state[5]}}</th>
@@ -148,7 +168,9 @@ body {
               <th>{{state[7]}}</th>
             </tr>
             {% endfor %}
-        </table>
+
+            {% endif %}       
+           </table>
       </div>
   </div>
 
