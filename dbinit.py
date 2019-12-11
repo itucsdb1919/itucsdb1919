@@ -302,8 +302,6 @@ CREATE TABLE IF NOT EXISTS "Bike_images" (
 # """
 # ALTER TABLE "Deals" ADD FOREIGN KEY ("Country") REFERENCES "Country" ("country_name");
 # """
-]
-
 
 def initialize(url):
     with dbapi2.connect(url) as connection:
