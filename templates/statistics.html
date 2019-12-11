@@ -44,7 +44,7 @@ body {
 }
 
 .navbar a:hover, .dropdown:hover .dropbtn {
-  background-color: red;
+  background-color:#f44336;
 }
 
 .dropdown-content {
@@ -74,6 +74,16 @@ body {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+.table-headers{
+  background-color: #f44336 !important;
+  color:white;
+}
+.table-div{
+  max-width: 86%;
+  height: min-content;
+  margin-left: 7%;
+  margin-top: 3%;
+}
 </style>
 
 <body>
@@ -82,7 +92,7 @@ body {
     <a href="home">Home</a>
     <a href="bikes">Bikes</a>
     <div class="dropdown">
-      <button class="dropbtn">Dropdown 
+      <button class="dropbtn">General Info 
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-content">
@@ -92,18 +102,19 @@ body {
       </div>
     </div> 
     <div id="sign">
-        <a href="signup">SignUp</a>
+        <a href="signin">Login</a>
+        <a href="signup">Register</a>
     </div>
 </div>
 <!-- Header -->
 
 
-<div class="w3-row-padding w3-padding-64 w3-container">
-    <div class="w3-content">
+<div class="table-div">
+    <div class="table-content">
       <div class="w3-twothird">
          <table class="w3-table-all">
             {% if name == "country" %}
-            <tr>
+            <tr class = "table-headers">
               <th>Country</th>
               <th>Rank</th>
               <th>Score</th>
@@ -113,7 +124,7 @@ body {
               <th>Cities</th>
             </tr>
             {% for state in statistics %}
-            <tr>
+            <tr >
               <th>{{state[0]}}</th>
               <th>{{state[1]}}</th>
               <th>{{state[2]}}</th>
@@ -125,7 +136,7 @@ body {
             {% endfor %}
             {% endif %}
             {% if name == "city" %}
-            <tr>
+            <tr class = "table-headers">
               <th>City</th>
               <th>Rank</th>
               <th>Score</th>
@@ -146,7 +157,7 @@ body {
             {% endif %}
             
             {% if name == "brand" %}
-            <tr>
+            <tr class = "table-headers">
               <th>Brand</th>
               <th>Website</th>
               <th>Logo</th>
@@ -168,7 +179,6 @@ body {
               <th>{{state[7]}}</th>
             </tr>
             {% endfor %}
-
             {% endif %}       
            </table>
       </div>
