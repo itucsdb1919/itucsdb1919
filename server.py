@@ -1,7 +1,6 @@
 
 from flask import Flask,render_template
 import psycopg2 as dbapi2
-from fl
 
 
 def executeSQL(sqlCode):
@@ -34,9 +33,16 @@ def home_page():
 
 @app.route("/bikes")
 def bike_page():
-    bikes = executeSQL("Select T1.title, T1.color,T1.owner_nickname, T3.image_url from \"Bikes\" as T1 LEFT JOIN \"Model\" as T2 ON T1.model_id = T2.model_id LEFT JOIN \"Bike_images\" as T3 ON T1.bike_id = T3.bike_id  WHERE T1.is_active ='yes'")
+    sqlCode = "Select T1.title, T1.color,T1.owner_nickname, T3.image_url, T1.bike_id from \"Bikes\" as T1 LEFT JOIN " \
+              "\"Model\" as T2 ON T1.model_id = T2.model_id LEFT JOIN \"Bike_images\" as T3 ON T1.bike_id = T3.bike_id  WHERE T1.is_active ='yes'"
+    bikes = executeSQL(sqlCode)
     return render_template("bikes.html", bikes = bikes)
 
+@app.route('/bike_detail')
+def bike_detail():
+    sqlCode = "sorgu"
+    detail = executeSQL(sqlCode)
+    return render_template("bike_detail.html", detail = detail)
 
 @app.route("/cities" , methods=['GET'])
 def statistics_city():

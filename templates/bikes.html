@@ -127,16 +127,18 @@ body {
       <div class="w3-twothird">
          <table class="w3-table-all">
             <tr class = "table-headers">
+              <th>Image</th>
               <th>Title</th>
               <th>Color</th>
               <th>Owner</th>
-              <th>İmage</th>
+              <th>Rent</th>
             {% for state in bikes %}
             <tr>
-              <th><img src={{state[3]}} style="max-height: 80px; max-width: 80px;"></th>
+              <th><a href="url"><img src={{state[3]}} style="max-height: 150px; max-width: 150px;"></a></th>
               <th>{{state[0]}}</th>
               <th>{{state[1]}}</th>
               <th>{{state[2]}}</th>
+              <th><button>Rent</button></th>
             </tr>
             {% endfor %}
            </table>
