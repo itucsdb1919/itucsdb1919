@@ -42,7 +42,8 @@ def bike_page():
 @app.route("/statistics" , methods=['GET'])
 def statistics():
     statistics = executeSQL("""SELECT * FROM \"Country\"""")
-    return render_template("statistics.html", statistics = statistics)
+    name = "couny"
+    return render_template("statistics.html", statistics = statistics, name = name)
 
 
 @app.route("/signup")

@@ -43,15 +43,17 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     <div class="w3-content">
       <div class="w3-twothird">
          <table class="w3-table-all">
+            {% if name == "country" %}
             <tr>
-              <th>Title</th>
-              <th>Model</th>
-              <th>Color</th>
-              <th>Frame Size</th>
-              <th>Price</th>
-              <th>Is Active</th>
-              <th>Parts</th>
+              <th>Country</th>
+              <th>Rank</th>
+              <th>Score</th>
+              <th>Bikes</th>
+              <th>Users</th>
+              <th>Money Spent</th>
+              <th>Cities</th>
             </tr>
+             {% endif %}
              {% for state in statistics %}
             <tr>
               <th>{{state[0]}}</th>
