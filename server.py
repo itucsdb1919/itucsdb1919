@@ -44,9 +44,6 @@ def executeSQL(sqlCode):
 
 app = Flask(__name__)
 
-if __name__ == "__main__":
-    for element in executeSQL("""SELECT * FROM \"Country\""""):
-        print(element)
 
 <<<<<<< HEAD
 =======
