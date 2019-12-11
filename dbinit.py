@@ -185,12 +185,7 @@ CREATE TABLE IF NOT EXISTS "Bike_images" (
 """
 # ,
 # """
-<<<<<<< HEAD
 # ALTER TABLE "Contact" ADD FOREIGN KEY ("country") REFERENCES "Country" ("country_name");
-=======
-# ALTER TABLE IF NOT EXISTS "Contact" ADD FOREIGN KEY ("country") REFERENCES "Country" ("country_name");
->>>>>>> 1b8a88b948d0dc70bae08c41deba51cc617537ca
-# """
 # ,
 # """
 # ALTER TABLE "Contact" ADD FOREIGN KEY ("profil") REFERENCES "Profil" ("profil_id");
