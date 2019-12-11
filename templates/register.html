@@ -226,16 +226,16 @@
         <div class="form-group">
 
           <input type="hidden" name="id">
-          <input type="text" class="form-control email" name="name" placeholder="Name">
+          <input oninput="valid(this)" id="NameID" type="text" class="form-control email" name="name"
+            placeholder="Name">
         </div>
         <div class="form-group">
-          <input type="text" class="form-control email" name="surname" placeholder="Surname">
+          <input oninput="valid1(this)" id="SurnameID" type="text" class="form-control email" name="surname"
+            placeholder="Surname">
         </div>
         <div class="form-group">
-          <input type="text" class="form-control email" name="nickname" placeholder="Nickname">
-        </div>
-        <div class="form-group">
-          <input type="text" class="form-control email" name="image_url" placeholder="Profile Picture URL">
+          <input oninput="valid2(this)" id="NicknameID" type="text" class="form-control email" name="nickname"
+            placeholder="Nickname">
         </div>
         <div class="form-group">
           <button class="btn1 btn-primary" type="submit">Register</button>
@@ -259,6 +259,32 @@
 
     </div>
   </footer>
+
+  <script>
+
+
+    var RegExp = new RegExp(/^[a-zA-Z0-9_]*$/);
+    var NameVal = document.getElementById("NameID").value;
+    var SurnameVal = document.getElementById("SurnameID").value;
+    var NicknameVal = document.getElementById("NicknameID").value;
+
+    function valid(elem) {
+      if (RegExp.test(elem.value)) { NameVal = elem.value; }
+      else { elem.value = NameVal; }
+    }
+
+    function valid1(elem) {
+      if (RegExp.test(elem.value)) { SurnameVal = elem.value; }
+      else { elem.value = SurnameVal; }
+    }
+
+    function valid2(elem) {
+      if (RegExp.test(elem.value)) { NicknameVal = elem.value; }
+      else { elem.value = NicknameVal; }
+    }
+
+  </script>
+
 </body>
 
 </html>
