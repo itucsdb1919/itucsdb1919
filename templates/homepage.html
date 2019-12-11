@@ -9,76 +9,83 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+  }
 
-.navbar {
-  overflow: hidden;
-  background-color: #333;
-}
+  .navbar {
+    overflow: hidden;
+    background-color: #333;
+  }
 
-.navbar a {
-  float: left;
-  font-size: 16px;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
+  .navbar a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
 
-.dropdown {
-  float: left;
-  overflow: hidden;
-}
+  .dropdown {
+    float: left;
+    overflow: hidden;
+  }
 
-.dropdown .dropbtn {
-  font-size: 16px;  
-  border: none;
-  outline: none;
-  color: white;
-  padding: 14px 16px;
-  background-color: inherit;
-  font-family: inherit;
-  margin: 0;
-}
+  .dropdown .dropbtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+  }
 
-.navbar a:hover, .dropdown:hover .dropbtn {
-  background-color: #f44336;
-}
+  .navbar a:hover,
+  .dropdown:hover .dropbtn {
+    background-color: #f44336;
+  }
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
 
-.dropdown-content a {
-  float: none;
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-}
-#sign{
-  float: right;
-}
-.dropdown-content a:hover {
-  background-color: #ddd;
-}
+  .dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
 
-.dropdown:hover .dropdown-content {
-  display: block;
-}
+  #sign {
+    float: right;
+  }
+
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  .w3-light-grey {
+    background-color: #fff !important;
+  }
 </style>
 
 <body>
-<!-- Navbar -->
-<div class="navbar">
+  <!-- Navbar -->
+  <div class="navbar">
     <a href="home">Home</a>
     <a href="bikes">Bikes</a>
     <div class="dropdown">
@@ -86,76 +93,80 @@ body {
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-content">
-          <a href="cities">Cities</a>
-          <a href="countries">Countries</a>
-          <a href="brands">Brands</a>
+        <a href="cities">Cities</a>
+        <a href="countries">Countries</a>
+        <a href="brands">Brands</a>
       </div>
-    </div> 
+    </div>
     <div id="sign">
-        <a href="signin">Login</a>
-        <a href="signup">Register</a>
-    </div>
-</div>
-<!-- Header -->
-<header class="w3-container w3-red w3-center" style="padding:128px 16px">
-  <h1 class="w3-margin w3-jumbo">RentChain</h1>
-  <p class="w3-xlarge">Database Project Template</p>
-  <button class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Get Started</button>
-</header>
-
-<!-- First Grid -->
-<div class="w3-row-padding w3-padding-64 w3-container">
-  <div class="w3-content">
-    <div class="w3-twothird">
-      <h1>Lorem Ipsum</h1>
-      <h5 class="w3-padding-32">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h5>
-
-      <p class="w3-text-grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-        laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </div>
-
-    <div class="w3-third w3-center">
-		<img src="https://image.flaticon.com/icons/svg/896/896977.svg" border="0" alt="W3Schools" src="logo_w3s.gif" width="300" height="300">
-  </div>
-</div>
-
-<!-- Second Grid -->
-<div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
-  <div class="w3-content">
-    <div class="w3-third w3-center">
-      <i class="fa fa-coffee w3-padding-64 w3-text-red w3-margin-right"></i>
-    </div>
-
-    <div class="w3-twothird">
-      <h1>Lorem Ipsum</h1>
-      <h5 class="w3-padding-32">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h5>
-
-      <p class="w3-text-grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-        laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <a href="signin">Login</a>
+      <a href="signup">Register</a>
     </div>
   </div>
-</div>
+  <!-- Header -->
+  <header class="w3-container w3-red w3-center" style="padding:128px 16px">
+    <h1 class="w3-margin w3-jumbo">RentChain</h1>
+    <p class="w3-xlarge">Database Project Template</p>
+    <button class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Get Started</button>
+  </header>
 
-<div class="w3-container w3-black w3-center w3-opacity w3-padding-64">
-    <h1 class="w3-margin w3-xlarge">Quote of the day: live life</h1>
-    <a href="//www.123formbuilder.com/form-5187417/contact-form" class="blueLink13">Contact us</a>
-</div>
+  <!-- First Grid -->
+  <div class="w3-row-padding w3-padding-64 w3-container">
+    <div class="w3-content">
+      <div class="w3-twothird">
+        <h1>About Rentchain</h1>
+        <h5 class="w3-padding-32">RentChain is a bike renting platform which provides its services all over the world.
+          Main advantage of the RentChain is its ability to connect bike owners and bike enthusiasts in a few clicks.
+          RentChain provides users with available bikes and provides reviews of bikes for a better user experience.
+          Every bike owner can publish their bike so other users can see its condition and reviews and later on rent it.
+        </h5>
+      </div>
 
-<!-- Footer -->
-<footer class="w3-container w3-padding-64 w3-center w3-opacity">  
-  <div class="w3-xlarge w3-padding-32">
-    <i class="fa fa-facebook-official w3-hover-opacity"></i>
-    <i class="fa fa-instagram w3-hover-opacity"></i>
-    <i class="fa fa-snapchat w3-hover-opacity"></i>
-    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-    <i class="fa fa-twitter w3-hover-opacity"></i>
-    <i class="fa fa-linkedin w3-hover-opacity"></i>
- </div>
-</footer>
+      <div class="w3-third w3-center">
+        <img
+          src="https://i0.wp.com/riverviewadventurecompany.com/wp-content/uploads/2019/05/Bike-Rental-Half-Day-Icon.png?fit=1000%2C1000&ssl=1"
+          border="0" alt="W3Schools" src="logo_w3s.gif" width="300" height="300">
+      </div>
+    </div>
+
+    <!-- Second Grid -->
+    <div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
+      <div class="w3-content">
+        <div class="w3-third w3-center">
+          <i class="w3-padding-64 w3-text-red w3-margin-right"></i>
+          <img src="https://cdn1.imggmi.com/uploads/2019/12/11/252d38e3edfde09fd1afad11b52980eb-full.png" border="0"
+            alt="W3Schools" src="logo_w3s.gif" width="300" height="300" style="margin-right: 50px;">
+        </div>
+
+        <div class="w3-twothird">
+          <h1>Save the planet, ride a bike!</h1>
+          <h5 class="w3-padding-32">With emerging global warming concerns we wanted to help saving the planet using our
+            project. Riding a bike can siginificantly decrease carbon footprint but not everyone have a bike, so
+            RentChain helps with this issue: users with no bikes can rent them from bicycle owners within their city.
+            This way bike owners can monetize ownership of the bicycle while helping our planet.</h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="w3-container w3-black w3-center w3-opacity w3-padding-64">
+      <h1 class="w3-margin w3-xlarge">Quote of the day: live life</h1>
+      <a href="//www.123formbuilder.com/form-5187417/contact-form" class="blueLink13">Contact us</a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="w3-container w3-padding-64 w3-center w3-opacity">
+      <div class="w3-xlarge w3-padding-32">
+        <i class="fa fa-facebook-official w3-hover-opacity"></i>
+        <i class="fa fa-instagram w3-hover-opacity"></i>
+        <i class="fa fa-snapchat w3-hover-opacity"></i>
+        <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+        <i class="fa fa-twitter w3-hover-opacity"></i>
+        <i class="fa fa-linkedin w3-hover-opacity"></i>
+      </div>
+    </footer>
 
 
 
 </body>
+
 </html>
