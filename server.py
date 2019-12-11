@@ -1,7 +1,6 @@
 
 from flask import Flask,render_template
 import psycopg2 as dbapi2
-from fl
 
 
 def executeSQL(sqlCode):
