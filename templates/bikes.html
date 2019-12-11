@@ -107,16 +107,15 @@ body {
               <th>Color</th>
               <th>Owner</th>
               <th>İmage</th>
-            </tr>
             {% for state in bikes %}
             <tr>
               <th>{{state[0]}}</th>
               <th>{{state[1]}}</th>
               <th>{{state[2]}}</th>
-              <th>{{state[3]}}</th>
+              <th><img src={{state[3]}} style="max-height: 80px; max-width: 80px;"></th>
             </tr>
             {% endfor %}
-        </table>
+           </table>
       </div>
   </div>
 
