@@ -1,3 +1,4 @@
+
 from flask import Flask,render_template
 import psycopg2 as dbapi2
 
@@ -23,10 +24,11 @@ def executeSQL(sqlCode):
 
 #def insertBike(title, color, frame_size, price, is_active, parts_id ,owner_nickname, city, country, model_id):
 
-
-
-
 app = Flask(__name__)
+
+if __name__ == "__main__":
+    for element in executeSQL("""SELECT * FROM \"Country\""""):
+        print(element)
 
 
 @app.route("/")
@@ -39,12 +41,27 @@ def bike_page():
     return render_template("bikes.html")
 
 
-@app.route("/statistics" , methods=['GET'])
-def statistics():
-    statistics = executeSQL("""SELECT * FROM \"Country\"""")
-    name = "couny"
+@app.route("/cities" , methods=['GET'])
+def statistics_city():
+    statistics = executeSQL("""SELECT * FROM \"City\"""")
+    name = "city"
     return render_template("statistics.html", statistics = statistics, name = name)
 
+@app.route("/countries" , methods=['GET'])
+def statistics_country():
+    statistics = executeSQL("""SELECT * FROM \"Country\"""")
+<<<<<<< HEAD
+    name = "couny"
+=======
+    name = "country"
+>>>>>>> 781e6d10ef66bb1f64d2288181ce3ee611aa3b62
+    return render_template("statistics.html", statistics = statistics, name = name)
+
+@app.route("/brands" , methods=['GET'])
+def statistics_brand():
+    statistics = executeSQL("""SELECT * FROM \"Brand\"""")
+    name = "brand"
+    return render_template("statistics.html", statistics = statistics, name = name)
 
 @app.route("/signup")
 def signup_page():
@@ -52,3 +69,6 @@ def signup_page():
 
 if __name__ == "__main__":
     app.run()
+
+
+
