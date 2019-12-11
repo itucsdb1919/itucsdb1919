@@ -41,11 +41,23 @@ def bike_page():
     return render_template("bikes.html")
 
 
-@app.route("/statistics" , methods=['GET'])
-def statistics():
-    statistics = executeSQL("""SELECT * FROM \"Country\"""")
-    return render_template("statistics.html", statistics = statistics)
+@app.route("/cities" , methods=['GET'])
+def statistics_city():
+    statistics = executeSQL("""SELECT * FROM \"City\"""")
+    name = "city"
+    return render_template("statistics.html", statistics = statistics, name = name)
 
+@app.route("/countries" , methods=['GET'])
+def statistics_country():
+    statistics = executeSQL("""SELECT * FROM \"Country\"""")
+    name = "country"
+    return render_template("statistics.html", statistics = statistics, name = name)
+
+@app.route("/brands" , methods=['GET'])
+def statistics_brand():
+    statistics = executeSQL("""SELECT * FROM \"Brand\"""")
+    name = "brand"
+    return render_template("statistics.html", statistics = statistics, name = name)
 
 @app.route("/signup")
 def signup_page():

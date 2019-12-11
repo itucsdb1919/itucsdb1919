@@ -1,58 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Rent Chain</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    </head>
+<title>Rent Chain</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
-.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
-.fa-anchor,.fa-coffee {font-size:200px}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+#sign{
+  float: right;
+}
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 </style>
+
 <body>
-
 <!-- Navbar -->
-<div class="head-div">
-  <div class="w3-top">
-    <div class="w3-bar w3-red w3-card w3-left-align w3-large">
-      <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-      <a href="home" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Home</a>
-      <a href="bikes" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Bikes</a>
-      <a href="statistics" class="w3-bar-item w3-button w3-padding-large w3-white" align="right">Statistics</a>
-      <a href="signup" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" align="right">SignUp</a>
+<div class="navbar">
+    <a href="home">Home</a>
+    <a href="bikes">Bikes</a>
+    <div class="dropdown">
+      <button class="dropbtn">Dropdown 
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+          <a href="cities">Cities</a>
+          <a href="countries">Countries</a>
+          <a href="brands">Brands</a>
+      </div>
+    </div> 
+    <div id="sign">
+        <a href="signup">SignUp</a>
     </div>
-
-    <!-- Navbar on small screens -->
-    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
-      <a href="bikes" class="w3-bar-item w3-button w3-padding-large">Bikes</a>
-      <a href="statistics" class="w3-bar-item w3-button w3-padding-large" align="right">Statistics</a>
-      <a href="signup" class="w3-bar-item w3-button w3-padding-large" align="right">SignUp</a>
-    </div>
-  </div>
 </div>
-
-
+<!-- Header -->
 
 
 <div class="w3-row-padding w3-padding-64 w3-container">
     <div class="w3-content">
       <div class="w3-twothird">
          <table class="w3-table-all">
+            {% if name == "country" %}
             <tr>
-              <th>Title</th>
-              <th>Model</th>
-              <th>Color</th>
-              <th>Frame Size</th>
-              <th>Price</th>
-              <th>Is Active</th>
-              <th>Parts</th>
+              <th>Country</th>
+              <th>Rank</th>
+              <th>Score</th>
+              <th>Bikes</th>
+              <th>Users</th>
+              <th>Total Transaction</th>
+              <th>Cities</th>
             </tr>
-             {% for state in statistics %}
+            {% endif %}
+            
+            {% if name == "city" %}
+            <tr>
+              <th>City</th>
+              <th>Rank</th>
+              <th>Score</th>
+              <th>User</th>
+              <th>Bikes</th>
+              <th>Country</th>
+            </tr>
+            {% endif %}
+            
+            {% if name == "brand" %}
+            <tr>
+              <th>Brand</th>
+              <th>Website</th>
+              <th>Logo</th>
+              <th>Foundation</th>
+              <th>Segment</th>
+              <th>Net Worth</th>
+              <th>Country</th>
+              <th>City</th>
+            </tr>
+            {% endif %}
+            {% for state in statistics %}
             <tr>
               <th>{{state[0]}}</th>
               <th>{{state[1]}}</th>
@@ -61,6 +146,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
               <th>{{state[4]}}</th>
               <th>{{state[5]}}</th>
               <th>{{state[6]}}</th>
+              <th>{{state[7]}}</th>
             </tr>
             {% endfor %}
         </table>
