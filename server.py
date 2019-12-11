@@ -50,11 +50,7 @@ def statistics_city():
 @app.route("/countries" , methods=['GET'])
 def statistics_country():
     statistics = executeSQL("""SELECT * FROM \"Country\"""")
-<<<<<<< HEAD
-    name = "couny"
-=======
     name = "country"
->>>>>>> 781e6d10ef66bb1f64d2288181ce3ee611aa3b62
     return render_template("statistics.html", statistics = statistics, name = name)
 
 @app.route("/brands" , methods=['GET'])
