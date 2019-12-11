@@ -75,7 +75,7 @@ def statistics_brand():
     name = "brand"
     return render_template("statistics.html", statistics = statistics, name = name)
 
-@app.route("/signup", methods=['GET','POST'])
+@app.route("/register", methods=['GET','POST'])
 def signup_page():
     if request.method == "POST":
         name = request.form['name']
@@ -89,11 +89,11 @@ def signup_page():
         return redirect(url_for('home_page'))
         
     else:
-         return render_template("signup.html")
+         return render_template("register.html")
 
-@app.route("/signin", methods=['GET','POST'])
+@app.route("/login", methods=['GET','POST'])
 def signin_page():
-    return render_template("signin.html")
+    return render_template("login.html")
 
 if __name__ == "__main__":
     app.run()
