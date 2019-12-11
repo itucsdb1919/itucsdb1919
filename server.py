@@ -38,7 +38,8 @@ def home_page():
 
 @app.route("/bikes")
 def bike_page():
-    return render_template("bikes.html")
+    bikes = executeSQL("""Select T1.title, T1.color,T1.owner_nickname, T3.image_url from \"Bikes\" as T1 LEFT JOIN \"Model\" as T2 ON T1.model_id = T2.model_id LEFT JOIN \"Bike_images\" as T3 ON T1.bike_id = T3.bike_id  WHERE T1.is_active ='yes';""")
+    return render_template("bikes.html", bikes = bikes)
 
 
 @app.route("/cities" , methods=['GET'])
