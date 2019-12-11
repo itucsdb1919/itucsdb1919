@@ -32,19 +32,25 @@ if __name__ == "__main__":
     for element in executeSQL("""SELECT * FROM \"Country\""""):
         print(element)
 
-
 @app.route("/")
+@app.route("/home")
 def home_page():
     return render_template("homepage.html")
 
-@app.route("/bikes" , methods=['GET'])
-def bikes():
-    bikes = executeSQL("""SELECT * FROM \"Country\"""")
-    return render_template("deneme.html", bikes = bikes)
+@app.route("/bikes")
+def bike_page():
+    return render_template("bikes.html")
 
+
+@app.route("/statistics" , methods=['GET'])
+def statistics():
+    statistics = executeSQL("""SELECT * FROM \"Country\"""")
+    return render_template("statistics.html", statistics = statistics)
+
+
+@app.route("/signup")
+def signup_page():
+    return render_template("signup.html")
 
 if __name__ == "__main__":
     app.run()
-
-
-
