@@ -93,7 +93,19 @@ def signup_page():
 
 @app.route("/login", methods=['GET','POST'])
 def signin_page():
-    return render_template("login.html")
+    if request.method == "POST":
+        surname = request.form['surname']
+        nickname = request.form['nickname']
+        query = executeSQL("SELECT profil_nickname from \"Profil\" where surname = '"+ surname+"'", "select")
+        if(query[0][0] == nickname):
+            #succesfull
+            #login_system()
+            print(query[0][0],nickname)
+            return render_template("homepage.html")
+        else:
+            return render_template("login.html")
+    else:
+        return render_template("login.html")
 
 if __name__ == "__main__":
     app.run()
