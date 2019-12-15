@@ -1,6 +1,8 @@
 
 from flask import Flask,render_template,request, redirect, url_for
 import psycopg2 as dbapi2
+from datetime import date
+
 
 
 def executeSQL(sqlCode,operation):
@@ -94,16 +96,15 @@ def signup_page():
 @app.route("/help", methods=['GET','POST'])
 def support_page():
     if request.method == "POST":
-        # name = request.form['name']
-        # surname = request.form['surname']
-        # nickname = request.form['nickname']
-        # image_url = request.form['image_url']
-        # print(name,surname,nickname,image_url)
-        # query = "INSERT INTO \"SupportTicket\" (\"name\", \"surname\", \"profil_nickname\", \"profil_image\", \"number_of_bikes\", \"number_of_deals\")VALUES ('" + name + "', '" + surname + "', '"+ nickname + "','" + image_url + "', '0', '0')"
+        nickname = request.form['nickname']
+        topic = request.form['topic']
+        details = request.form['details']
+        print(details,nickname,topic)
+        query = "INSERT INTO \"SupportTicket\" (writer_nickname, writen_date, support_text, topic, satisfaction_score, is_answered, support_worker_id)VALUES ('" + nickname + "','" + date.today() + "', '" + details + "', '"+ topic + "','0', '0', '0')"
         # print(query)
-        # executeSQL(query,"insert")
+        executeSQL(query,"insert")
         # return redirect(url_for('home_page'))
-        return render_template("homepage.html")
+        return redirect(url_for('home_page'))
         
     else:
          return render_template("support.html")
