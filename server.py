@@ -1,8 +1,7 @@
 
 from flask import Flask,render_template,request, redirect, url_for
 import psycopg2 as dbapi2
-from datetime import date
-
+from datetime import datetime
 
 
 def executeSQL(sqlCode,operation):
@@ -99,8 +98,10 @@ def support_page():
         nickname = request.form['nickname']
         topic = request.form['topic']
         details = request.form['details']
-        print(details,nickname,topic)
-        query = "INSERT INTO \"SupportTicket\" (writer_nickname, writen_date, support_text, topic, satisfaction_score, is_answered, support_worker_id)VALUES ('" + nickname + "','" + date.today() + "', '" + details + "', '"+ topic + "','0', '0', '0')"
+        dateTimeObj = datetime.now()
+        thedate = dateTimeObj.strftime("%d-%b-%Y (%H:%M:%S.%f)")
+        print(details,nickname,topic,thedate)
+        query = "INSERT INTO \"SupportTickets\" (writer_nickname, writen_date, support_text, topic, satisfaction_score, is_answered, support_worker_id)VALUES ('" + nickname + "','" + thedate + "', '" + details + "', '"+ topic + "','0', '0', '0')"
         # print(query)
         executeSQL(query,"insert")
         # return redirect(url_for('home_page'))
