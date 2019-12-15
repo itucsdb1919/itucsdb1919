@@ -91,6 +91,23 @@ def signup_page():
     else:
          return render_template("register.html")
 
+@app.route("/help", methods=['GET','POST'])
+def support_page():
+    if request.method == "POST":
+        # name = request.form['name']
+        # surname = request.form['surname']
+        # nickname = request.form['nickname']
+        # image_url = request.form['image_url']
+        # print(name,surname,nickname,image_url)
+        # query = "INSERT INTO \"SupportTicket\" (\"name\", \"surname\", \"profil_nickname\", \"profil_image\", \"number_of_bikes\", \"number_of_deals\")VALUES ('" + name + "', '" + surname + "', '"+ nickname + "','" + image_url + "', '0', '0')"
+        # print(query)
+        # executeSQL(query,"insert")
+        # return redirect(url_for('home_page'))
+        return render_template("homepage.html")
+        
+    else:
+         return render_template("support.html")
+
 @app.route("/login", methods=['GET','POST'])
 def signin_page():
     if request.method == "POST":
@@ -98,7 +115,7 @@ def signin_page():
         nickname = request.form['nickname']
         query = executeSQL("SELECT profil_nickname from \"Profil\" where surname = '"+ surname+"'", "select")
         if(query[0][0] == nickname):
-            #succesfull
+            #succesfullL this code is complated
             #login_system()
             print(query[0][0],nickname)
             return render_template("homepage.html")
