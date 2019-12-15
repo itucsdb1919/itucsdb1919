@@ -159,28 +159,58 @@ body {
                 <form action="" method="post">
                     <button style="background-color: #f44336;" name="bike_id" type="submit" value="{{state[10]}}">Rent</button>
                 </form>
-            </th>
+              </th>
             </tr>
             {% endfor %}
-           </table>
+         </table>
       </div>
-  </div>
-
-  <footer class="footerRentChain">
-    <div>
-        <a style="text-decoration: none;" href="https://github.com/itucsdb1919/itucsdb1919"><i
-            style="margin-left: 10px;" class="fa fa-github"></i>
-          Github</a>
-        <a style="text-decoration: none;" href="mailto:info@rentchain.com"><i style="margin-left: 10px;"
-            class="fa fa-envelope"></i> e-mail</a>
-        <a style="text-decoration: none;" href="https://www.linkedin.com/in/rentchain"><i style="margin-left: 10px;"
-            class="fa fa-linkedin"></i>
-          LinkedIn</a>
-          <a style="text-decoration: none;" href="help"><i style="margin-left: 10px;"
-            class="fa fa-question-circle"></i>
-          Support</a>
     </div>
-  </footer>
+</div>
+<div class="table-div">
+    <div class="w3-content">
+        <div class="w3-twothird">
+            <table class="w3-table-all">
+                <tr class = "table-headers">
+                    <th>Title</th>
+                    <th>Image</th>
+                    <th>Comment</th>
+                    <th>Writer</th>
+                    <th>Date</th>
+                    <th>Upvotes</th>
+                    <th>Downvotes</th>
+                </tr>
+                {% for comment in comments %}
+                <tr>
+                    <th>{{comment[0]}}</th>
+                    <th>{{comment[1]}}</th>
+                    <th>{{comment[2]}}</th>
+                    <th>{{comment[3]}}</th>
+                    <th>{{comment[4]}}</th>
+                    <th>{{comment[5]}}</th>
+                    <th>{{comment[6]}}</th>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<footer class="footerRentChain">
+<div>
+    <a style="text-decoration: none;" href="https://github.com/itucsdb1919/itucsdb1919"><i
+        style="margin-left: 10px;" class="fa fa-github"></i>
+      Github</a>
+    <a style="text-decoration: none;" href="mailto:info@rentchain.com"><i style="margin-left: 10px;"
+        class="fa fa-envelope"></i> e-mail</a>
+    <a style="text-decoration: none;" href="https://www.linkedin.com/in/rentchain"><i style="margin-left: 10px;"
+        class="fa fa-linkedin"></i>
+      LinkedIn</a>
+      <a style="text-decoration: none;" href="help"><i style="margin-left: 10px;"
+        class="fa fa-question-circle"></i>
+      Support</a>
+</div>
+</footer>
 
 
 
