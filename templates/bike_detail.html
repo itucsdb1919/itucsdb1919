@@ -128,11 +128,12 @@ body {
               <th>Frame Size</th>
               <th>Price</th>
               <th>Owner</th>
-                <th>City</th>
-                <th>Country</th>
-                <th>Model Year</th>
-                <th>Bike Type</th>
-                <th>Frame Material</th>
+              <th>City</th>
+              <th>Country</th>
+              <th>Model Year</th>
+              <th>Bike Type</th>
+              <th>Frame Material</th>
+              <th>Rent Bike</th>
             {% for state in detail %}
             <tr>
               <th>
@@ -154,6 +155,11 @@ body {
               <th>{{state[7]}}</th>
               <th>{{state[8]}}</th>
               <th>{{state[9]}}</th>
+              <th>
+                <form action="" method="post">
+                    <button style="background-color: #f44336;" name="bike_id" type="submit" value="{{state[10]}}">Rent</button>
+                </form>
+            </th>
             </tr>
             {% endfor %}
            </table>

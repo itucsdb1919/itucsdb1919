@@ -49,7 +49,7 @@ def bike_page():
     if request.method == "POST":
         bike_id = request.form['bike_id']
         detailSQL = "Select T1.title, T1.color,T1.frame_size,T1.price,T1.owner_nickname,T1.city,T1.country," \
-                    "T2.year,T2.bike_type,T2.frame_material from \"Bikes\" as T1 LEFT JOIN \"Model\" as T2 ON T1.model_id" \
+                    "T2.year,T2.bike_type,T2.frame_material,T1.bike_id from \"Bikes\" as T1 LEFT JOIN \"Model\" as T2 ON T1.model_id" \
                     " = T2.model_id WHERE T1.is_active ='yes' AND T1.bike_id = " + bike_id
         imagesSQL = "SELECT image_url FROM \"Bike_images\" WHERE bike_id = " + bike_id
         detail = executeSQL(detailSQL, "select")
