@@ -2,12 +2,13 @@
 from flask import Flask,render_template,request, redirect, url_for
 import psycopg2 as dbapi2
 from datetime import datetime
+import os
 
 
 def executeSQL(sqlCode,operation):
     try:
         # connect to the PostgreSQL server
-         print('Connecting to the PostgreSQL database...')
+        print('Connecting to the PostgreSQL database...')
         url = os.getenv("DATABASE_URL")
         connection = dbapi2.connect(url)
         cursor = connection.cursor()
