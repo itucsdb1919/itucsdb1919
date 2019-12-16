@@ -67,6 +67,7 @@
   }
 
   #sign {
+    padding-right: 20px;
     float: right;
   }
 
@@ -118,8 +119,22 @@
       </div>
     </div> 
     <div id="sign">
+      {% if not session.logged_in %}
         <a href="login">Login</a>
         <a href="register">Register</a>
+      {% else %}
+        <div class="dropdown">
+          <button class="dropbtn">Profil
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+              <a href="mybikes">My Bikes</a>
+              <a href="mydeals">My Deals</a>
+              <a href="settings">Settings</a>
+              <a href="logout">Logout</a>
+          </div>
+        </div> 
+        {% endif %}
     </div>
 </div>
 

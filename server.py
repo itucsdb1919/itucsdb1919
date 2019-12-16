@@ -1,5 +1,5 @@
 
-from flask import Flask,render_template,request, redirect, url_for
+from flask import Flask,render_template,request, redirect, url_for, session,flash
 import psycopg2 as dbapi2
 from datetime import datetime
 import os
@@ -32,7 +32,7 @@ def executeSQL(sqlCode,operation):
 #def insertBike(title, color, frame_size, price, is_active, parts_id ,owner_nickname, city, country, model_id):
 
 app = Flask(__name__)
-
+app.secret_key = "super secret key"
 
 @app.route("/")
 @app.route("/home")
@@ -112,6 +112,7 @@ def support_page():
 
 @app.route("/login", methods=['GET','POST'])
 def signin_page():
+    session['logged_in'] = False
     if request.method == "POST":
         surname = request.form['surname']
         nickname = request.form['nickname']
@@ -119,12 +120,61 @@ def signin_page():
         if(query[0][0] == nickname):
             #succesfullL this code is complated
             #login_system()
+            session['logged_in'] = True
+            session['nickname'] = nickname
             print(query[0][0],nickname)
             return render_template("homepage.html")
         else:
             return render_template("login.html")
     else:
         return render_template("login.html")
+
+@app.route("/logout", methods=['GET'])
+def logout_page():
+    if(session['logged_in']):
+        session['logged_in'] = False
+        session.pop('nickname', None)
+        flash('You were logged out')
+        return redirect(url_for('signin_page'))
+    else:
+        return redirect(url_for(home_page))        
+
+
+@app.route("/mybikes", methods=['GET','POST'])
+def mybikes_page():
+    if(session['logged_in']):
+        if request.method == "GET":
+            sqlCode ="Select T1.title, T1.color,T1.owner_nickname, T3.image_url, T1.bike_id from \"Bikes\" as T1 LEFT JOIN \"Model\" as T2 ON T1.model_id = T2.model_id LEFT JOIN( select bike_id, MIN(image_url) as image_url from \"Bike_images\" GROUP BY bike_id )T3 ON T1.bike_id = T3.bike_id WHERE T1.owner_nickname ='" + session['nickname'] + "'"           
+            bikes = executeSQL(sqlCode, "select")
+            return render_template("bikes.html", bikes = bikes)
+        if request.method == "POST":
+            bike_id = request.form['bike_id']
+            detailSQL = "Select T1.title, T1.color,T1.frame_size,T1.price,T1.owner_nickname,T1.city,T1.country," \
+                        "T2.year,T2.bike_type,T2.frame_material,T1.bike_id from \"Bikes\" as T1 LEFT JOIN \"Model\" as T2 ON T1.model_id" \
+                        " = T2.model_id WHERE T1.is_active ='yes' AND T1.bike_id = " + bike_id
+            imagesSQL = "SELECT image_url FROM \"Bike_images\" WHERE bike_id = " + bike_id
+            detail = executeSQL(detailSQL, "select")
+            images = executeSQL(imagesSQL, "select")
+            return render_template("bike_detail.html", detail = detail, images = images)
+
+
+@app.route("/mydeals", methods=['GET'])
+def mydeals_page():
+    if(session['logged_in']):
+        session['logged_in'] = False
+        session.pop('nickname', None)
+        flash('You were logged out')
+        return redirect(url_for('signin_page'))
+    else:
+        return redirect(url_for(home_page))
+
+@app.route("/settings", methods=['GET','POST'])
+def settings_page():
+    if(session['logged_in']):
+        if request.method == "GET":
+            return render_template("settings.html")
+        if request.method == "POST":
+            return redirect(url_for(home_page))
 
 if __name__ == "__main__":
     app.run()

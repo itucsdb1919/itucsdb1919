@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <style>
   body {
     font-family: Arial, Helvetica, sans-serif;
@@ -42,7 +43,7 @@
     font-family: inherit;
     margin: 0;
   }
-
+  
   .navbar a:hover,
   .dropdown:hover .dropbtn {
     background-color: #f44336;
@@ -80,16 +81,111 @@
     display: block;
   }
 
-  .table-headers {
-    background-color: #f44336 !important;
-    color: white;
+  /* .container-form {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+
+    max-width: 100%;
+    max-height: 100%;
+    overflow: auto;
+  } */
+
+  body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0 auto 0 auto;
+    width: 100%;
+    text-align: center;
+    margin: 0px 0px 20px 0px;
+    background-color: #f44336;
   }
 
-  .table-div {
-    max-width: 86%;
-    height: min-content;
-    margin-left: 7%;
+  p {
+    font-size: 12px;
+    text-decoration: none;
+    color: #ffffff;
+  }
+
+  h1 {
+    font-size: 1.5em;
+    color: #525252;
+  }
+
+  .box {
+    background: white;
+    width: 400px;
+    border-radius: 6px;
+    margin: 0 auto 0 auto;
     margin-top: 3%;
+    padding: 0px 0px 0px 0px;
+    border: #636363 4px solid;
+  }
+
+  .email {
+    background: #ecf0f1;
+    border: #ccc 1px solid;
+    border-bottom: #ccc 2px solid;
+    padding: 8px;
+    width: 250px;
+    color: #AAAAAA;
+    margin-top: 10px;
+    font-size: 1em;
+    border-radius: 4px;
+  }
+
+  .password {
+    border-radius: 4px;
+    background: #ecf0f1;
+    border: #ccc 1px solid;
+    padding: 8px;
+    width: 250px;
+    font-size: 1em;
+  }
+
+  .btn1 {
+    background: #333;
+    width: 125px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: white;
+    border-radius: 4px;
+    border: #27ae60 1px solid;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 800;
+    font-size: 0.8em;
+  }
+
+  .btn1:hover {
+    background: rgb(29, 29, 29);
+  }
+
+  #btn2 {
+    float: left;
+    background: #3498db;
+    width: 125px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: white;
+    border-radius: 4px;
+    border: #2980b9 1px solid;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    font-weight: 800;
+    font-size: 0.8em;
+  }
+
+  #btn2:hover {
+    background: #3594D2;
   }
 
   .footerRentChain {
@@ -139,89 +235,41 @@
   </div>
 </div>
 
-  <!-- Header -->
 
-
-  <div class="table-div">
-    <div class="table-content">
-      <div class="w3-twothird">
-        <table class="w3-table-all">
-          {% if name == "country" %}
-          <tr class="table-headers">
-            <th>Country</th>
-            <th>Rank</th>
-            <th>Score</th>
-            <th>Bikes</th>
-            <th>Users</th>
-            <th>Money Spent</th>
-            <th>Cities</th>
-          </tr>
-          {% for state in statistics %}
-          <tr>
-            <th>{{state[0]}}</th>
-            <th>{{state[1]}}</th>
-            <th>{{state[2]}}</th>
-            <th>{{state[3]}}</th>
-            <th>{{state[4]}}</th>
-            <th>{{state[5]}}</th>
-            <th>{{state[6]}}</th>
-          </tr>
-          {% endfor %}
-          {% endif %}
-          {% if name == "city" %}
-          <tr class="table-headers">
-            <th>City</th>
-            <th>Rank</th>
-            <th>Score</th>
-            <th>User</th>
-            <th>Bikes</th>
-            <th>Country</th>
-          </tr>
-          {% for state in statistics %}
-          <tr>
-            <th>{{state[0]}}</th>
-            <th>{{state[1]}}</th>
-            <th>{{state[2]}}</th>
-            <th>{{state[3]}}</th>
-            <th>{{state[4]}}</th>
-            <th>{{state[5]}}</th>
-          </tr>
-          {% endfor %}
-          {% endif %}
-
-          {% if name == "brand" %}
-          <tr class="table-headers">
-            <th>Brand</th>
-            <th>Website</th>
-            <th>Logo</th>
-            <th>Foundation</th>
-            <th>Segment</th>
-            <th>Net Worth</th>
-            <th>Country</th>
-            <th>City</th>
-          </tr>
-          {% for state in statistics %}
-          <tr>
-            <th>{{state[0]}}</th>
-            <th>{{state[1]}}</th>
-            <th><img src={{state[2]}} style="max-height: 80px; max-width: 80px;"></th>
-            <th>{{state[3]}}</th>
-            <th>{{state[4]}}</th>
-            <th>{{state[5]}}</th>
-            <th>{{state[6]}}</th>
-            <th>{{state[7]}}</th>
-          </tr>
-          {% endfor %}
-          {% endif %}
-        </table>
-      </div>
-    </div>
+  <div class="container-form">
+    <form action="{{ url_for('settings_page') }}" method="POST">
+      <div class="box">
+        <h1><b>Profile Settings</b></h1>
+        <div class="form-group">
+          <div class="form-group">
+            <input readonly type="text" class="form-control email" name="nickname" value="Nickname">
+          </div>
+          <div class="form-group">
+            <input readonly type="text" class="form-control email" name="nickname" value="Surname">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control email" name="nickname" value="Blabla">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control email" name="topic" value="Topic">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control email" name="topic" value="Topic">
+          </div>
+          <div class="form-group">
+            <button class="btn1 btn-primary" type="submit">Change</button>
+          </div>
+          <div class="form-group">
+            <button class="btn1 btn-primary" type="submit">Delete Account</button>
+          </div>
+        </div>
+    </form>
   </div>
 
   <footer class="footerRentChain">
     <div>
-      <a style="text-decoration: none;" href="https://github.com/itucsdb1919/itucsdb1919"><i
-          style="margin-left: 10px;" class="fa fa-github"></i>
+      <a style="text-decoration: none;" href="https://github.com/itucsdb1919/itucsdb1919"><i style="margin-left: 10px;"
+          class="fa fa-github"></i>
         Github</a>
       <a style="text-decoration: none;" href="mailto:info@rentchain.com"><i style="margin-left: 10px;"
           class="fa fa-envelope"></i> e-mail</a>
@@ -229,11 +277,10 @@
           class="fa fa-linkedin"></i>
         LinkedIn</a>
         <a style="text-decoration: none;" href="help"><i style="margin-left: 10px;"
-          class="fa fa-question-circle"></i>
-        Support</a>
+            class="fa fa-question-circle"></i>
+          Support</a>
     </div>
   </footer>
-
 </body>
 
 </html>
