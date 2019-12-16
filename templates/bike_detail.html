@@ -17,7 +17,14 @@ body {
   overflow: hidden;
   background-color: #333;
 }
-
+.box {
+    background-color: lightgrey;
+    width: 80%;
+    border-radius: 6px;
+    margin: 50px auto 50px auto;
+    padding: 20px 20px 20px 20px;
+    border: #636363 4px solid;
+}
 .navbar a {
   float: left;
   font-size: 16px;
@@ -117,7 +124,7 @@ body {
     </div>
 </div>
 
-<div class="table-div">
+<div class="table-div" style="margin-bottom: 400px;">
     <div class="w3-content">
       <div class="w3-twothird">
          <table class="w3-table-all">
@@ -166,35 +173,39 @@ body {
       </div>
     </div>
 </div>
-<div class="table-div">
-    <div class="w3-content">
-        <div class="w3-twothird">
-            <table class="w3-table-all">
-                <tr class = "table-headers">
-                    <th>Title</th>
-                    <th>Image</th>
-                    <th>Comment</th>
-                    <th>Writer</th>
-                    <th>Date</th>
+
+{% for comment in comments %}
+<div class="w3-content">
+    <div class="box">
+        <h3>{{comment[1]}}</h3>
+        <p>{{comment[2]}}</p>
+        <p>{{comment[4]}}</p>
+        <div class="w3-content">
+            <p>{{comment[3]}}</p>
+        </div>
+        <div class="table-div">
+            <table>
+                <tr>
                     <th>Upvotes</th>
                     <th>Downvotes</th>
                 </tr>
-                {% for comment in comments %}
                 <tr>
-                    <th>{{comment[0]}}</th>
-                    <th>{{comment[1]}}</th>
-                    <th>{{comment[2]}}</th>
-                    <th>{{comment[3]}}</th>
-                    <th>{{comment[4]}}</th>
-                    <th>{{comment[5]}}</th>
-                    <th>{{comment[6]}}</th>
+                    <td style="width: 20px">{{comment[5]}}</td>
+                    <td style="width: 20px">{{comment[6]}}</td>
                 </tr>
-                {% endfor %}
             </table>
         </div>
     </div>
 </div>
-
+<div style="margin-left: 30%; margin-top: -10px;">
+    <form action="" method="post">
+        <button style="background-color: #f44336;" name="bike_id" type="submit" value="{{comment[7]}}up">Upvote</button>
+    </form>
+    <form action="" method="post">
+        <button style="background-color: #f44336;" name="bike_id" type="submit" value="{{comment[7]}}down">Downvote</button>
+    </form>
+</div>
+{% endfor %}
 
 <footer class="footerRentChain">
 <div>

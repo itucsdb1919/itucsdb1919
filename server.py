@@ -46,16 +46,32 @@ def bike_page():
         bikes = executeSQL(sqlCode, "select")
 
         return render_template("bikes.html", bikes = bikes)
+
     if request.method == "POST":
         bike_id = request.form['bike_id']
-        detailSQL = "Select T1.title, T1.color,T1.frame_size,T1.price,T1.owner_nickname,T1.city,T1.country," \
-                    "T2.year,T2.bike_type,T2.frame_material,T1.bike_id from \"Bikes\" as T1 LEFT JOIN \"Model\" as T2 ON T1.model_id" \
-                    " = T2.model_id WHERE T1.is_active ='yes' AND T1.bike_id = " + bike_id
-        imagesSQL = "SELECT image_url FROM \"Bike_images\" WHERE bike_id = " + bike_id
-        detail = executeSQL(detailSQL, "select")
-        images = executeSQL(imagesSQL, "select")
 
-        return render_template("bike_detail.html", detail = detail, images = images)
+        if bike_id[-2:] != "up" and bike_id[-4:] != "down":
+            detailSQL = "Select T1.title, T1.color,T1.frame_size,T1.price,T1.owner_nickname,T1.city,T1.country," \
+                        "T2.year,T2.bike_type,T2.frame_material,T1.bike_id from \"Bikes\" as T1 LEFT JOIN \"Model\" as T2 ON T1.model_id" \
+                        " = T2.model_id WHERE T1.is_active ='yes' AND T1.bike_id = " + bike_id
+            imagesSQL = "SELECT image_url FROM \"Bike_images\" WHERE bike_id = " + bike_id
+            commentsSQL = "SELECT  image_url, title,  comment , writer_nickname,  written_date, up_vote, down_vote, comment_id FROM \"Comments\" WHERE bike_id = " + bike_id
+            detail = executeSQL(detailSQL, "select")
+            images = executeSQL(imagesSQL, "select")
+            comments = executeSQL(commentsSQL, "select")
+
+            return render_template("bike_detail.html", detail= detail, images=images, comments= comments)
+
+        else:
+            if bike_id[-2:] == "up":
+                voteSQL = "UPDATE \"Comments\" SET up_vote = up_vote + 1 WHERE comment_id =" + bike_id[:-2]
+            if bike_id[-4:] == "down":
+                voteSQL = "UPDATE \"Comments\" SET down_vote = down_vote + 1 WHERE comment_id =" + bike_id[:-4]
+            executeSQL(voteSQL, "insert")
+
+            return redirect(url_for('bike_page'))
+
+
 
 
 @app.route("/cities" , methods=['GET'])
