@@ -97,7 +97,6 @@ body {
     bottom: 0;
     width: 100%;
     background-color: #f44336;
-    margin-top: 20px;
     color: white;
     text-align: center;
     border-top: #333 1px solid;
@@ -174,40 +173,40 @@ body {
       </div>
     </div>
 </div>
-
-{% for comment in comments %}
-<div class="w3-content">
-    <div class="box">
-        <h3>{{comment[1]}}</h3>
-        <p>{{comment[2]}}</p>
-        <p>{{comment[4]}}</p>
-        <div class="w3-content">
-            <p>{{comment[3]}}</p>
-        </div>
-        <div class="table-div">
-            <table>
-                <tr>
-                    <th>Upvotes</th>
-                    <th>Downvotes</th>
-                </tr>
-                <tr>
-                    <td style="width: 20px">{{comment[5]}}</td>
-                    <td style="width: 20px">{{comment[6]}}</td>
-                </tr>
-            </table>
+<div style="margin-bottom: 30px">
+    {% for comment in comments %}
+    <div class="w3-content">
+        <div class="box">
+            <h3>{{comment[1]}}</h3>
+            <p>{{comment[2]}}</p>
+            <p>{{comment[4]}}</p>
+            <div class="w3-content">
+                <p>{{comment[3]}}</p>
+            </div>
+            <div class="table-div">
+                <table>
+                    <tr>
+                        <th>Upvotes</th>
+                        <th>Downvotes</th>
+                    </tr>
+                    <tr>
+                        <td style="width: 20px">{{comment[5]}}</td>
+                        <td style="width: 20px">{{comment[6]}}</td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
+    <div style="margin-left: 30%; margin-top: -10px">
+        <form action="" method="post">
+            <button style="background-color: #f44336;" name="bike_id" type="submit" value="{{comment[7]}}up">Upvote</button>
+        </form>
+        <form action="" method="post">
+            <button style="background-color: #f44336;" name="bike_id" type="submit" value="{{comment[7]}}down">Downvote</button>
+        </form>
+    </div>
+    {% endfor %}
 </div>
-<div style="margin-left: 30%; margin-top: -10px;">
-    <form action="" method="post">
-        <button style="background-color: #f44336;" name="bike_id" type="submit" value="{{comment[7]}}up">Upvote</button>
-    </form>
-    <form action="" method="post">
-        <button style="background-color: #f44336;" name="bike_id" type="submit" value="{{comment[7]}}down">Downvote</button>
-    </form>
-</div>
-{% endfor %}
-
 <footer class="footerRentChain">
 <div>
     <a style="text-decoration: none;" href="https://github.com/itucsdb1919/itucsdb1919"><i
