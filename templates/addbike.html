@@ -245,57 +245,88 @@
 
 
   <div class="container-form">
-    <form action="{{ url_for('settings_page') }}" method="POST">
+    <form action="{{ url_for('addbikes_page') }}" method="POST">
       <div class="box">
-        <h1><b>Profile Settings</b></h1>
+        <h1><b>Add Bike</b></h1>
         <div class="form-group">
             <div class="form-group">
-                <label > Name: </label>
-                <input type="text" class="form-control email" name="name" value={{sqlprofile[0][0]}}>
+                <label > Title: </label>
+                <input  type="text" class="form-control email" name="title">
             </div>
             <div class="form-group">
-                <label> Surname: </label>
-                <input type="text" class="form-control email" name="surname" value="{{sqlprofile[0][1]}}">
+                <label> Color: </label>
+                <input  type="text" class="form-control email" name="color">
             </div>
             <div class="form-group">
-                <label> Nickname: </label>
-                <input readonly type="text" class="form-control email" name="nickname" value="{{sqlprofile[0][2]}}">
+              <label> Image URL: </label>
+              <input  type="text" class="form-control email" name="image_url" >
+          </div>
+            <div class="form-group">
+                <label> Frame size: </label>
+                <input  type="text" class="form-control email" name="frame_size" >
             </div>
             <div class="form-group">
-                <label> Prof Img: </label>
-                <input type="text" class="form-control email" name="profile_image" value="{{sqlprofile[0][3]}}">
-            </div>
-            <div class="form-group">
-                <label> Email: </label>
-                <input type="text" class="form-control email" name="email" value="{{sqlcontact[0][1]}}">
-            </div>
-            <div class="form-group">
-                <label> Inst URL: </label>
-                <input type="text" class="form-control email" name="instagram_url" value="{{sqlcontact[0][3]}}">
-            </div>
-            <div class="form-group">
-                <label> Face URL: </label>
-                <input type="text" class="form-control email" name="facebook_url" value="{{sqlcontact[0][4]}}">
-            </div>
-            <div class="form-group">
-                <label> Twit URL: </label>
-                <input type="text" class="form-control email" name="twitter_url" value="{{sqlcontact[0][5]}}">
-            </div>
-            <div class="form-group">
-                <label> Country: </label>
-                <input type="text" class="form-control email" name="country" value="{{sqlcontact[0][6]}}">
+                <label> Price: </label>
+                <input type="text" class="form-control email" name="price" >
             </div>
             <div class="form-group">
                 <label> City: </label>
-                <input type="text" class="form-control email" name="city" value="{{sqlcontact[0][8]}}">
+                <input type="text" class="form-control email" name="city" >
             </div>
             <div class="form-group">
-                <label> Phone: </label>
-                <input type="text" class="form-control email" name="phone_num" value="{{sqlcontact[0][9]}}">
+                <label> Country: </label>
+                <input type="text" class="form-control email" name="country" >
             </div>
             <div class="form-group">
-                <button class="btn1 btn-primary" type="submit">Change</button>
-                <button href="" class="btn1 btn-primary" type="submit">Delete Account</button>
+                <label> Model name: </label>
+                <input type="text" class="form-control email" name="model_name" >
+            </div>
+            <div class="form-group">
+                <label> Year: </label>
+                <input type="text" class="form-control email" name="year" >
+            </div>
+            <div class="form-group">
+                <label> Bike type: </label>
+                <input type="text" class="form-control email" name="bike_type">
+            </div>
+            <div class="form-group">
+                <label> Frame Material: </label>
+                <input type="text" class="form-control email" name="frame_material">
+            </div>
+            <div class="form-group">
+                <label> Target customer: </label>
+                <input type="text" class="form-control email" name="target_customer">
+            </div>
+            <div class="form-group">
+                <label> Brand: </label>
+                <input type="text" class="form-control email" name="brand">
+            </div>
+            <div class="form-group">
+                <label> Gidon: </label>
+                <input type="text" class="form-control email" name="gidon">
+                </div>
+                <div class="form-group">
+                  <label> Aktarici: </label>
+                  <input type="text" class="form-control email" name="aktarici">
+              </div>
+              <div class="form-group">
+                <label> Sele: </label>
+                <input type="text" class="form-control email" name="sele">
+            </div>
+            <div class="form-group">
+              <label> Jant: </label>
+              <input type="text" class="form-control email" name="jant">
+          </div>
+            <div class="form-group">
+                <label> Lastik: </label>
+                <input  type="text" class="form-control email" name="lastik">
+            </div>
+            <div class="form-group">
+              <label> Pedal: </label>
+              <input  type="text" class="form-control email" name="pedal">
+          </div>
+            <div class="form-group">
+                <button class="btn1 btn-primary" type="submit">Submit</button>
             </div>
           </div>
         </div>
@@ -317,6 +348,31 @@
           Support</a>
     </div>
   </footer>
+  
+  <script>
+
+
+    var RegExp = new RegExp(/^[a-zA-Z0-9_]*$/);
+    var NameVal = document.getElementById("name").value;
+    var SurnameVal = document.getElementById("surname").value;
+    var NicknameVal = document.getElementById("phone_num").value;
+
+    function valid(elem) {
+      if (RegExp.test(elem.value)) { NameVal = elem.value; }
+      else { elem.value = NameVal; }
+    }
+
+    function valid1(elem) {
+      if (RegExp.test(elem.value)) { SurnameVal = elem.value; }
+      else { elem.value = SurnameVal; }
+    }
+
+    function valid2(elem) {
+      if (RegExp.test(elem.value)) { NicknameVal = elem.value; }
+      else { elem.value = NicknameVal; }
+    }
+
+  </script>
 </body>
 
 </html>

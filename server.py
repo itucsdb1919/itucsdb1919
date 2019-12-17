@@ -24,6 +24,7 @@ def executeSQL(sqlCode,operation):
             connection.commit()
             cursor.close()
             connection.close()  
+
         
             
 
@@ -167,7 +168,7 @@ def mybikes_page():
         if request.method == "GET":
             sqlCode ="Select T1.title, T1.color,T1.owner_nickname, T3.image_url, T1.bike_id from \"Bikes\" as T1 LEFT JOIN \"Model\" as T2 ON T1.model_id = T2.model_id LEFT JOIN( select bike_id, MIN(image_url) as image_url from \"Bike_images\" GROUP BY bike_id )T3 ON T1.bike_id = T3.bike_id WHERE T1.owner_nickname ='" + session['nickname'] + "'"           
             bikes = executeSQL(sqlCode, "select")
-            return render_template("bikes.html", bikes = bikes)
+            return render_template("mybikes.html", bikes = bikes)
         if request.method == "POST":
             bike_id = request.form['bike_id']
             detailSQL = "Select T1.title, T1.color,T1.frame_size,T1.price,T1.owner_nickname,T1.city,T1.country," \
@@ -177,6 +178,52 @@ def mybikes_page():
             detail = executeSQL(detailSQL, "select")
             images = executeSQL(imagesSQL, "select")
             return render_template("bike_detail.html", detail = detail, images = images)
+
+@app.route("/addbike", methods=['GET','POST'])
+def addbikes_page():
+    if(session['logged_in']):
+        if request.method == "GET":
+            return render_template("addbike.html")
+        if request.method == "POST":
+            title = request.form['title']
+            color = request.form['color']        
+            image_url = request.form['image_url'] 
+            frame_size = request.form['frame_size']
+            price = request.form['price']         
+            city = request.form['city']
+            country = request.form['country'] 
+            model_name = request.form['model_name']
+            year = request.form['year']        
+            bike_type = request.form['bike_type']
+            frame_material = request.form['frame_material']
+            target_customer = request.form['target_customer']
+            brand = request.form['brand']         
+            gidon = request.form['gidon']
+            aktarici = request.form['aktarici'] 
+            sele = request.form['sele'] 
+            jant = request.form['jant'] 
+            lastik = request.form['lastik'] 
+            pedal = request.form['pedal'] 
+
+            modelsql = "INSERT INTO \"Model\"(model_name, year, bike_type,frame_material, target_customer, brand, country)VALUES ('" + model_name + "','" + year + "', '" + bike_type + "', '" + frame_material + "', '" + target_customer + "', '" + brand + "', '" + country + "')"
+            partssql = "INSERT INTO \"Parts\"(gidon, aktarici, sele,jant, lastik, pedal)VALUES ('" + gidon + "','" + aktarici + "', '" + sele + "', '"+ jant + "', '"+ lastik + "', '"+ pedal +"')"
+            executeSQL(modelsql,"insert" )
+            executeSQL(partssql,"insert" )
+
+            
+            model_id = executeSQL("SELECT MAX(model_id) from \"Model\"  ","select" )
+            parts_id = executeSQL("SELECT MAX(parts_id) from \"Parts\"  ","select" )
+            parts_id = parts_id[0][0]
+            model_id = model_id[0][0]
+            print (parts_id, model_id)
+            bikesql = "INSERT INTO \"Bikes\"(is_active, title, color, frame_size, price, parts_id ,owner_nickname ,city, country,model_id)VALUES ('t','" + title + "','" + color + "', '" + frame_size + "', '"+ price + "', '"+ str(parts_id) + "', '"+ str(session['nickname']) + "', '"+ city + "', '"+ country + "', '"+ str(model_id) + "')"
+            executeSQL(bikesql,"insert" )
+            bike_id = executeSQL("SELECT MAX(bike_id) from \"Bikes\"  ","select")
+            bike_id = bike_id[0][0]
+            imagesql = "INSERT INTO \"Bike_images\"(bike_id,image_url)VALUES('"+str(bike_id)+"','"+str(image_url)+"')"
+            executeSQL(imagesql,"insert" )
+            
+            return redirect(url_for("mybikes_page")) 
 
 
 @app.route("/mydeals", methods=['GET'])
