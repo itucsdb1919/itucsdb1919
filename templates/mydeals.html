@@ -74,6 +74,7 @@
   .dropdown-content a:hover {
     background-color: #ddd;
   }
+
   .btn1 {
     background: #333;
     width: 125px;
@@ -89,6 +90,7 @@
     font-weight: 800;
     font-size: 0.8em;
   }
+
   .dropdown:hover .dropdown-content {
     display: block;
   }
@@ -118,8 +120,8 @@
 </style>
 
 <body>
-<!-- Navbar -->
-<div class="navbar">
+  <!-- Navbar -->
+  <div class="navbar">
     <a href="home">Home</a>
     <a href="bikes">Bikes</a>
     <div class="dropdown">
@@ -127,113 +129,109 @@
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-content">
-          <a href="cities">Cities</a>
-          <a href="countries">Countries</a>
-          <a href="brands">Brands</a>
+        <a href="cities">Cities</a>
+        <a href="countries">Countries</a>
+        <a href="brands">Brands</a>
       </div>
     </div>
     <div id="sign">
       {% if not session.logged_in %}
-        <a href="login">Login</a>
-        <a href="register">Register</a>
+      <a href="login">Login</a>
+      <a href="register">Register</a>
       {% else %}
-        <div class="dropdown">
-          <button class="dropbtn">Profil
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <div class="dropdown-content">
-              <a href="mybikes">My Bikes</a>
-              <a href="mydeals">My Deals</a>
-              <a href="settings">Settings</a>
-              <a href="logout">Logout</a>
-          </div>
+      <div class="dropdown">
+        <button class="dropbtn">Profil
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="mybikes">My Bikes</a>
+          <a href="mydeals">My Deals</a>
+          <a href="settings">Settings</a>
+          <a href="logout">Logout</a>
         </div>
-        {% endif %}
-    </div>
-</div>
-<div>
-  <a href="addbike" >
-    <button class="btn1 btn-primary" style="float: right;">Add Bike</button>
-  </a>
-</div>
-<div class="table-div">
-    <div class="w3-content">
-      <div class="w3-twothird">
-         <table class="w3-table-all">
-            <tr class = "table-headers">
-                <th>Price</th>
-                <th>Payment Method</th>
-                <th>Date Taken</th>
-                <th>Date Return</th>
-                <th>Owner</th>
-                <th>Owner Phone</th>
-                <th>Country</th>
-            {% for state in given %}
-            <tr>
-                <th>{{state[0]}}</th>
-                <th>{{state[1]}}</th>
-                <th>{{state[2]}}</th>
-                <th>{{state[3]}}</th>
-                <th>{{state[4]}}</th>
-                <th>{{state[5]}}</th>
-                <th>{{state[6]}}</th>
-              <th>
-                  <form action="" method="post">
-                      <button style="background-color: #f44336;" name="deal_id" type="submit" value="{{state[7]}}">Delete</button>
-                  </form>
-              </th>
-            </tr>
-            {% endfor %}
-         </table>
       </div>
+      {% endif %}
     </div>
-</div>
-<div class="table-div">
-    <div class="w3-content">
-      <div class="w3-twothird">
-         <table class="w3-table-all">
-            <tr class = "table-headers">
-              <th>Price</th>
-                <th>Price</th>
-                <th>Payment Method</th>
-                <th>Date Taken</th>
-                <th>Date Return</th>
-                <th>Owner</th>
-                <th>Owner Phone</th>
-                <th>Country</th>
-            {% for state in taken %}
-            <tr>
-                <th>{{state[0]}}</th>
-                <th>{{state[0]}}</th>
-                <th>{{state[1]}}</th>
-                <th>{{state[2]}}</th>
-                <th>{{state[3]}}</th>
-                <th>{{state[4]}}</th>
-                <th>{{state[5]}}</th>
-                <th>{{state[6]}}</th>
-            </tr>
-            {% endfor %}
-         </table>
-      </div>
-    </div>
-</div>
-
-<footer class="footerRentChain">
-  <div>
-    <a style="text-decoration: none;" href="https://github.com/itucsdb1919/itucsdb1919"><i
-        style="margin-left: 10px;" class="fa fa-github"></i>
-      Github</a>
-    <a style="text-decoration: none;" href="mailto:info@rentchain.com"><i style="margin-left: 10px;"
-        class="fa fa-envelope"></i> e-mail</a>
-    <a style="text-decoration: none;" href="https://www.linkedin.com/in/rentchain"><i style="margin-left: 10px;"
-        class="fa fa-linkedin"></i>
-      LinkedIn</a>
-      <a style="text-decoration: none;" href="help"><i style="margin-left: 10px;"
-        class="fa fa-question-circle"></i>
-      Support</a>
-
   </div>
-</footer>
+
+  <div class="table-div">
+    <div class="w3-content">
+      <div class="w3-twothird">
+        <table class="w3-table-all">
+          <tr class="table-headers">
+            <th>Price</th>
+            <th>Payment Method</th>
+            <th>Date Taken</th>
+            <th>Date Return</th>
+            <th>Owner</th>
+            <th>Owner Phone</th>
+            <th>Country</th>
+            {% for state in given %}
+          <tr>
+            <th>{{state[0]}}</th>
+            <th>{{state[1]}}</th>
+            <th>{{state[2]}}</th>
+            <th>{{state[3]}}</th>
+            <th>{{state[4]}}</th>
+            <th>{{state[5]}}</th>
+            <th>{{state[6]}}</th>
+            <th>
+              <form action="" method="post">
+                <button style="background-color: #f44336;" name="deal_id" type="submit"
+                  value="{{state[7]}}">Delete</button>
+              </form>
+            </th>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="table-div">
+    <div class="w3-content">
+      <div class="w3-twothird">
+        <table class="w3-table-all">
+          <tr class="table-headers">
+            <th>Price</th>
+            <th>Price</th>
+            <th>Payment Method</th>
+            <th>Date Taken</th>
+            <th>Date Return</th>
+            <th>Owner</th>
+            <th>Owner Phone</th>
+            <th>Country</th>
+            {% for state in taken %}
+          <tr>
+            <th>{{state[0]}}</th>
+            <th>{{state[0]}}</th>
+            <th>{{state[1]}}</th>
+            <th>{{state[2]}}</th>
+            <th>{{state[3]}}</th>
+            <th>{{state[4]}}</th>
+            <th>{{state[5]}}</th>
+            <th>{{state[6]}}</th>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footerRentChain">
+    <div>
+      <a style="text-decoration: none;" href="https://github.com/itucsdb1919/itucsdb1919"><i style="margin-left: 10px;"
+          class="fa fa-github"></i>
+        Github</a>
+      <a style="text-decoration: none;" href="mailto:info@rentchain.com"><i style="margin-left: 10px;"
+          class="fa fa-envelope"></i> e-mail</a>
+      <a style="text-decoration: none;" href="https://www.linkedin.com/in/rentchain"><i style="margin-left: 10px;"
+          class="fa fa-linkedin"></i>
+        LinkedIn</a>
+      <a style="text-decoration: none;" href="help"><i style="margin-left: 10px;" class="fa fa-question-circle"></i>
+        Support</a>
+
+    </div>
+  </footer>
 
 </body>
 
