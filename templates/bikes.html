@@ -101,119 +101,141 @@
     text-align: center;
     border-top: #333 1px solid;
   }
+
+  .btn1 {
+    background: #333;
+    width: 50px;
+    padding-top: 1px;
+    padding-bottom: 5px;
+    color: white;
+    border-radius: 4px;
+    border: #333 1px solid;
+
+    margin-top: 3px;
+    margin-bottom: 20px;
+
+    margin-left: 1px;
+    margin-right: auto;
+    font-weight: 800;
+    font-size: 0.8em;
+  }
 </style>
 
 <body>
-<!-- Navbar -->
-<div class="navbar">
+  <!-- Navbar -->
+  <div class="navbar">
     <a href="home">Home</a>
     <a href="bikes">Bikes</a>
     <div class="dropdown">
-      <button class="dropbtn">General Info 
+      <button class="dropbtn">General Info
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-content">
-          <a href="cities">Cities</a>
-          <a href="countries">Countries</a>
-          <a href="brands">Brands</a>
+        <a href="cities">Cities</a>
+        <a href="countries">Countries</a>
+        <a href="brands">Brands</a>
       </div>
-    </div> 
+    </div>
     <div id="sign">
       {% if not session.logged_in %}
-        <a href="login">Login</a>
-        <a href="register">Register</a>
+      <a href="login">Login</a>
+      <a href="register">Register</a>
       {% else %}
-        <div class="dropdown">
-          <button class="dropbtn">Profil
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <div class="dropdown-content">
-              <a href="mybikes">My Bikes</a>
-              <a href="mydeals">My Deals</a>
-              <a href="settings">Settings</a>
-              <a href="logout">Logout</a>
-          </div>
-        </div> 
-        {% endif %}
+      <div class="dropdown">
+        <button class="dropbtn">Profil
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="mybikes">My Bikes</a>
+          <a href="mydeals">My Deals</a>
+          <a href="settings">Settings</a>
+          <a href="logout">Logout</a>
+        </div>
+      </div>
+      {% endif %}
     </div>
-</div>
-<div>
-    <form action=" ", method="post">
-        <select name="bike_id">
-            {% for brand in brands %}
-            <option value="{{brand[0]}}brnd">{{brand[0]}}</option>
-            {% endfor %}
-        </select>
-        <br>Filter by Brand<br>
-        <input type="submit">
+  </div>
+  <div style="float: left; margin-right: 15px; margin-left: 5px; margin-top: 45px;">
+    <form action=" " , method="post">
+      Brand<br>
+      <select name="bike_id">
+        {% for brand in brands %}
+        <option value="{{brand[0]}}brnd">{{brand[0]}}</option>
+        {% endfor %}
+      </select>
+      <br>
+      <button class="btn1 btn-primary" type="submit">Sort</button>
     </form>
-</div>
-<div>
-    <form action=" ", method="post">
-        <select name="bike_id">
-            {% for city in cities %}
-            <option value="{{city[0]}}city">{{city[0]}}</option>
-            {% endfor %}
-        </select>
-        <br>Filter by City<br>
-        <input type="submit">
+  </div>
+  <div style="float: left; margin-right: 15px; margin-top: 45px;">
+    <form action=" " , method="post">
+      City<br>
+      <select name="bike_id">
+        {% for city in cities %}
+        <option value="{{city[0]}}city">{{city[0]}}</option>
+        {% endfor %}
+      </select>
+      <br>
+      <button class="btn1 btn-primary" type="submit">Sort</button>
     </form>
-</div><div>
-    <form action=" ", method="post">
-        <select name="bike_id">
-            {% for color in colors %}
-            <option value="{{color[0]}}clor">{{color[0]}}</option>
-            {% endfor %}
-        </select>
-        <br>Filter by Color<br>
-        <input type="submit">
+  </div>
+  <div style="float: left; margin-right: 15px; margin-top: 45px;">
+    <form action=" " , method="post">
+      Color<br>
+      <select name="bike_id">
+        {% for color in colors %}
+        <option value="{{color[0]}}clor">{{color[0]}}</option>
+        {% endfor %}
+      </select>
+      <br>
+      <button class="btn1 btn-primary" type="submit">Sort</button>
     </form>
-</div>
+  </div>
 
-<div class="table-div">
+  <div class="table-div">
     <div class="w3-content">
       <div class="w3-twothird">
-         <table class="w3-table-all">
-            <tr class = "table-headers">
-              <th>Image</th>
-              <th>Title</th>
-              <th>Color</th>
-              <th>Owner</th>
-              <th>Details</th>
+        <table class="w3-table-all">
+          <tr class="table-headers">
+            <th>Image</th>
+            <th>Title</th>
+            <th>Color</th>
+            <th>Owner</th>
+            <th>Details</th>
             {% for state in bikes %}
-            <tr>
-              <th><img src={{state[3]}} style="max-height: 150px; max-width: 150px;"></th>
-              <th>{{state[0]}}</th>
-              <th>{{state[1]}}</th>
-              <th>{{state[2]}}</th>
-              <th>
-                  <form action="" method="post">
-                      <button style="background-color: #f44336;" name="bike_id" type="submit" value="{{state[4]}}">Details</button>
-                  </form>
-              </th>
-            </tr>
-            {% endfor %}
-         </table>
+          <tr>
+            <th><img src={{state[3]}} style="max-height: 150px; max-width: 150px;"></th>
+            <th>{{state[0]}}</th>
+            <th>{{state[1]}}</th>
+            <th>{{state[2]}}</th>
+            <th>
+              <form action="" method="post">
+                <button style="background-color: #f44336;" name="bike_id" type="submit"
+                  value="{{state[4]}}">Details</button>
+              </form>
+            </th>
+          </tr>
+          {% endfor %}
+        </table>
       </div>
     </div>
-</div>
-
-<footer class="footerRentChain">
-  <div>
-    <a style="text-decoration: none;" href="https://github.com/itucsdb1919/itucsdb1919"><i
-        style="margin-left: 10px;" class="fa fa-github"></i>
-      Github</a>
-    <a style="text-decoration: none;" href="mailto:info@rentchain.com"><i style="margin-left: 10px;"
-        class="fa fa-envelope"></i> e-mail</a>
-    <a style="text-decoration: none;" href="https://www.linkedin.com/in/rentchain"><i style="margin-left: 10px;"
-        class="fa fa-linkedin"></i>
-      LinkedIn</a>
-      <a style="text-decoration: none;" href="help"><i style="margin-left: 10px;"
-        class="fa fa-question-circle"></i>
-      Support</a>
-
   </div>
-</footer>
+
+  <footer class="footerRentChain">
+    <div>
+      <a style="text-decoration: none;" href="https://github.com/itucsdb1919/itucsdb1919"><i style="margin-left: 10px;"
+          class="fa fa-github"></i>
+        Github</a>
+      <a style="text-decoration: none;" href="mailto:info@rentchain.com"><i style="margin-left: 10px;"
+          class="fa fa-envelope"></i> e-mail</a>
+      <a style="text-decoration: none;" href="https://www.linkedin.com/in/rentchain"><i style="margin-left: 10px;"
+          class="fa fa-linkedin"></i>
+        LinkedIn</a>
+      <a style="text-decoration: none;" href="help"><i style="margin-left: 10px;" class="fa fa-question-circle"></i>
+        Support</a>
+
+    </div>
+  </footer>
 
 </body>
 
