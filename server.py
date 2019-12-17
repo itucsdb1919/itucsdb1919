@@ -44,15 +44,22 @@ def home_page():
 @app.route("/bikes", methods=['GET','POST'])
 def bike_page():
     if request.method == "GET":
-        sqlCode ="Select T1.title, T1.color,T1.owner_nickname, T3.image_url, T1.bike_id from \"Bikes\" as T1 LEFT JOIN \"Model\" as T2 ON T1.model_id = T2.model_id LEFT JOIN( select bike_id, MIN(image_url) as image_url from \"Bike_images\" GROUP BY bike_id )T3 ON T1.bike_id = T3.bike_id WHERE T1.is_active ='yes'"
-        bikes = executeSQL(sqlCode, "select")
+        bikesSQL ="Select T1.title, T1.color,T1.owner_nickname, T3.image_url, T1.bike_id from \"Bikes\" as T1 LEFT JOIN \"Model\" as T2 ON T1.model_id = T2.model_id " \
+                 "LEFT JOIN( select bike_id, MIN(image_url) as image_url from \"Bike_images\" GROUP BY bike_id )T3 ON T1.bike_id = T3.bike_id WHERE T1.is_active ='yes'"
+        brandSQL = "Select brand_name from \"Brand\""
+        citySQL = "Select city_name from \"City\""
+        colorSQL = "Select color from \"Bikes\""
+        bikes = executeSQL(bikesSQL, "select")
+        brands = executeSQL(brandSQL, "select")
+        cities = executeSQL(citySQL, "select")
+        colors = executeSQL(colorSQL, "select")
 
-        return render_template("bikes.html", bikes = bikes)
+        return render_template("bikes.html", bikes = bikes, brands=brands, cities=cities, colors=colors)
 
     if request.method == "POST":
         bike_id = request.form['bike_id']
 
-        if bike_id[-2:] != "up" and bike_id[-4:] != "down":
+        if bike_id[-2:] != "up" and bike_id[-4:] != "down" and bike_id[-4:] != "rent" and bike_id[-4:] != "fltr" and bike_id[-4:] != "brnd" and bike_id[-4:] != "city" and bike_id[-4:] != "clor" and bike_id[-4:] != "deal":
             detailSQL = "Select T1.title, T1.color,T1.frame_size,T1.price,T1.owner_nickname,T1.city,T1.country," \
                         "T2.year,T2.bike_type,T2.frame_material,T1.bike_id from \"Bikes\" as T1 LEFT JOIN \"Model\" as T2 ON T1.model_id" \
                         " = T2.model_id WHERE T1.is_active ='yes' AND T1.bike_id = " + bike_id
@@ -64,7 +71,7 @@ def bike_page():
 
             return render_template("bike_detail.html", detail= detail, images=images, comments= comments)
 
-        else:
+        elif bike_id[-2:] == "up" or bike_id[-4:] == "down":
             if bike_id[-2:] == "up":
                 voteSQL = "UPDATE \"Comments\" SET up_vote = up_vote + 1 WHERE comment_id =" + bike_id[:-2]
             if bike_id[-4:] == "down":
@@ -73,7 +80,50 @@ def bike_page():
 
             return redirect(url_for('bike_page'))
 
+        elif bike_id[-4:] == "deal":
+            rented_bike_id = bike_id[:-4]
+            renting_user = session['my_profile_id']
+            dealSQL = "INSERT INTO \"Deals\" Select price,'NULL' As payment_method,NOW() As date_taken,NOW() As date_return,0 As duration_as_hour,'t' As " \
+                      "is_active,owner_nickname,(select profil_nickname from \"Profil\" where profil_id = " + str(renting_user) + " ) as " \
+                      "renter_nickname,(select phone_num from \"Contact\" where profil = (select profil_id from  \"Profil\" where profil_nickname = owner_nickname )) " \
+                      "as owner_phone,(select phone_num from \"Contact\" where profil = (select profil_id from  \"Profil\" where profil_nickname = " \
+                      "(select profil_nickname from \"Profil\" where profil_id = " + str(renting_user) + " ) )) as renter_phone, bike_id, city, country " \
+                      "from \"Bikes\" where bike_id = '" + rented_bike_id + "'"
+            executeSQL(dealSQL, "insert")
 
+            return redirect(url_for('bike_page'))
+
+        #elif bike_id[-4:] == "fltr":
+        #    filter_id = bike_id[:-4]
+        #    filterSQL = ""
+        #    filter = executeSQL(filterSQL, 'select')
+        #
+        #    return render_template("bikes_filter.html" , filter= filter)
+
+        elif bike_id[-4:] == "brnd":
+            filter_id = bike_id[:-4]
+
+            filterSQL = "Select T1.title, T1.color,T1.owner_nickname, T3.image_url, T1.bike_id from \"Bikes\" as T1 LEFT JOIN \"Model\" as T2 ON T1.model_id = T2.model_id " \
+                        "LEFT JOIN( select bike_id, MIN(image_url) as image_url from \"Bike_images\" GROUP BY bike_id )T3 ON T1.bike_id = T3.bike_id WHERE T1.is_active ='yes' AND T2.brand ='" + filter_id +"'"
+            filter = executeSQL(filterSQL, 'select')
+
+            return render_template("bikes_filter.html", filter=filter)
+
+        elif bike_id[-4:] == "city":
+            filter_id = bike_id[:-4]
+            filterSQL = "Select T1.title, T1.color,T1.owner_nickname, T3.image_url, T1.bike_id from \"Bikes\" as T1 LEFT JOIN \"Model\" as T2 ON T1.model_id = T2.model_id " \
+                        "LEFT JOIN( select bike_id, MIN(image_url) as image_url from \"Bike_images\" GROUP BY bike_id )T3 ON T1.bike_id = T3.bike_id WHERE T1.is_active ='yes' AND T1.city = '"  + filter_id + "'"
+            filter = executeSQL(filterSQL, 'select')
+
+            return render_template("bikes_filter.html", filter=filter)
+
+        elif bike_id[-4:] == "clor":
+            filter_id = bike_id[:-4]
+            filterSQL = "Select T1.title, T1.color,T1.owner_nickname, T3.image_url, T1.bike_id from \"Bikes\" as T1 LEFT JOIN \"Model\" as T2 ON T1.model_id = T2.model_id " \
+                        "LEFT JOIN( select bike_id, MIN(image_url) as image_url from \"Bike_images\" GROUP BY bike_id )T3 ON T1.bike_id = T3.bike_id WHERE T1.is_active ='yes' AND T1.color = '"  + filter_id + "'"
+            filter = executeSQL(filterSQL, 'select')
+
+            return render_template("bikes_filter.html", filter=filter)
 
 
 @app.route("/cities" , methods=['GET'])
