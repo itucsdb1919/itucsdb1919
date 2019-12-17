@@ -186,8 +186,16 @@ body {
             <div class="table-div">
                 <table>
                     <tr>
-                        <th>Upvotes</th>
-                        <th>Downvotes</th>
+                        <th>        
+                          <form action="" method="post">
+                          <button style="background-color: #f44336;" name="bike_id" type="submit" value="{{comment[7]}}up">Upvote</button>
+                          </form>
+                        </th>
+                        <th>        
+                          <form action="" method="post">
+                          <button style="background-color: #f44336;" name="bike_id" type="submit" value="{{comment[7]}}down">Downvote</button>
+                          </form>
+                        </th>
                     </tr>
                     <tr>
                         <td style="width: 20px">{{comment[5]}}</td>
@@ -198,12 +206,8 @@ body {
         </div>
     </div>
     <div style="margin-left: 30%; margin-top: -10px">
-        <form action="" method="post">
-            <button style="background-color: #f44336;" name="bike_id" type="submit" value="{{comment[7]}}up">Upvote</button>
-        </form>
-        <form action="" method="post">
-            <button style="background-color: #f44336;" name="bike_id" type="submit" value="{{comment[7]}}down">Downvote</button>
-        </form>
+
+
     </div>
     {% endfor %}
 </div>
