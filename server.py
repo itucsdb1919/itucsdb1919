@@ -293,9 +293,9 @@ def mydeals_page():
         if request.method == "GET":
             print(session['nickname'])
             takenSQL = "Select  price, payment_method, date_taken, date_return,  owner_nickname, owner_phone," \
-                       "\"Country\", bike_id from \"Deals\" where renter_nickname = '" + session['nickname'] + "'"
+                       "\"Country\", bike_id from \"Deals\" where is_active = 't' and renter_nickname = '" + session['nickname'] + "'"
             givenSQL = "Select  price, payment_method, date_taken, date_return, owner_nickname, owner_phone, " \
-                       "\"Country\", bike_id from \"Deals\" where is_active = 't' and owner_nickname = '" + session['nickname'] + "'"
+                       "\"Country\", bike_id from \"Deals\" where owner_nickname = '" + session['nickname'] + "'"
             taken = executeSQL(takenSQL, "select")
             given = executeSQL(givenSQL, "select")
 
