@@ -326,13 +326,28 @@ def addbikes_page():
             return redirect(url_for("mybikes_page")) 
 
 
-@app.route("/mydeals", methods=['GET'])
+@app.route("/mydeals", methods=['GET','POST'])
 def mydeals_page():
     if(session['logged_in']):
-        session['logged_in'] = False
-        session.pop('nickname', None)
-        flash('You were logged out')
-        return redirect(url_for("signin_page"))
+        if request.method == "GET":
+            print(session['nickname'])
+            takenSQL = "Select  price, payment_method, date_taken, date_return,  owner_nickname, owner_phone," \
+                       "\"Country\", bike_id from \"Deals\" where is_active = 't' and renter_nickname = '" + session['nickname'] + "'"
+            givenSQL = "Select  price, payment_method, date_taken, date_return, owner_nickname, owner_phone, " \
+                       "\"Country\", bike_id from \"Deals\" where owner_nickname = '" + session['nickname'] + "'"
+            taken = executeSQL(takenSQL, "select")
+            given = executeSQL(givenSQL, "select")
+
+            return render_template("mydeals.html", taken= taken, given= given)
+
+        if request.method == "POST":
+            bike_id = request.form['deal_id']
+            SQL1 = "UPDATE  \"Bikes\" SET is_active = 't' WHERE bike_id = " + bike_id
+            SQL2 = "UPDATE  \"Deals\" SET is_active = 'f' WHERE bike_id = " + bike_id
+            executeSQL(SQL1, "insert")
+            executeSQL(SQL2, "insert")
+
+            return redirect(url_for("mydeals_page"))
     else:
         return redirect(url_for("home_page"))
 

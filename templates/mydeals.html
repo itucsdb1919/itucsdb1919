@@ -18,38 +18,62 @@
     background-color: #333;
   }
 
-  .box {
-    background-color: white;
-    width: 80%;
-    border-radius: 6px;
-    margin: 50px auto 50px auto;
-    padding: 20px 20px 20px 20px;
-    border: #636363 4px solid;
-}
-.navbar a {
-  float: left;
-  font-size: 16px;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
+  .navbar a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
 
-.dropdown {
-  float: left;
-  overflow: hidden;
-}
+  .dropdown {
+    float: left;
+    overflow: hidden;
+  }
 
-.dropdown .dropbtn {
-  font-size: 16px;
-  border: none;
-  outline: none;
-  color: white;
-  padding: 14px 16px;
-  background-color: inherit;
-  font-family: inherit;
-  margin: 0;
-}
+  .dropdown .dropbtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+  }
+
+  .navbar a:hover,
+  .dropdown:hover .dropbtn {
+    background-color: #f44336;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+
+  .dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+
+  #sign {
+    padding-right: 20px;
+    float: right;
+  }
+
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
 
   .btn1 {
     background: #333;
@@ -66,48 +90,24 @@
     font-weight: 800;
     font-size: 0.8em;
   }
-.navbar a:hover, .dropdown:hover .dropbtn {
-  background-color: #f44336;
-}
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
 
-.dropdown-content a {
-  float: none;
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-}
-#sign{
-  float: right;
-}
-.dropdown-content a:hover {
-  background-color: #ddd;
-}
+  .table-headers {
+    background-color: #f44336 !important;
+    color: white;
+  }
 
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-.table-headers{
-  background-color: #f44336 !important;
-  color:white;
-}
-.table-div{
-  max-width: 86%;
-  height: min-content;
-  margin-left: 7%;
-  margin-top: 3%;}
+  .table-div {
+    max-width: 86%;
+    height: min-content;
+    margin-left: 7%;
+    margin-top: 3%;
+  }
 
-.footerRentChain {
+  .footerRentChain {
     position: fixed;
     left: 0;
     bottom: 0;
@@ -154,41 +154,20 @@
     </div>
   </div>
 
-<div>
-  <a href="addcomment" > 
-    <button class="btn1 btn-primary" style="float: right;">Add Comment</button>
-  </a>
-</div>
-
-
-<div class="table-div" style="margin-bottom: 400px;">
+  <div class="table-div">
     <div class="w3-content">
       <div class="w3-twothird">
         <table class="w3-table-all">
           <tr class="table-headers">
-            <th>Images</th>
-            <th>Title</th>
-            <th>Color</th>
-            <th>Frame Size</th>
             <th>Price</th>
+            <th>Payment Method</th>
+            <th>Date Taken</th>
+            <th>Date Return</th>
             <th>Owner</th>
-            <th>City</th>
+            <th>Owner Phone</th>
             <th>Country</th>
-            <th>Model Year</th>
-            <th>Bike Type</th>
-            <th>Frame Material</th>
-            <th>Rent Bike</th>
-            {% for state in detail %}
+            {% for state in given %}
           <tr>
-            <th>
-              <table>
-                {% for image in images %}
-                <tr>
-                  <th><img src={{image[0]}} style="max-height: 150px; max-width: 150px;"></th>
-                </tr>
-                {% endfor %}
-              </table>
-            </th>
             <th>{{state[0]}}</th>
             <th>{{state[1]}}</th>
             <th>{{state[2]}}</th>
@@ -196,13 +175,10 @@
             <th>{{state[4]}}</th>
             <th>{{state[5]}}</th>
             <th>{{state[6]}}</th>
-            <th>{{state[7]}}</th>
-            <th>{{state[8]}}</th>
-            <th>{{state[9]}}</th>
             <th>
               <form action="" method="post">
-                <button style="color: white; background-color: #f44336;" name="bike_id" type="submit"
-                  value="{{state[10]}}deal">Rent</button>
+                <button style="background-color: #f44336;" name="deal_id" type="submit"
+                  value="{{state[7]}}">Delete</button>
               </form>
             </th>
           </tr>
@@ -211,49 +187,36 @@
       </div>
     </div>
   </div>
-
-  <div style="margin-bottom: 30px">
-    <h1 style="padding-left: 24% ;">Comments</h1>
-    {% for comment in comments %}
+  <div class="table-div">
     <div class="w3-content">
-
-      <div class="box">
-        <h3>{{comment[1]}}</h3>
-        <p>{{comment[2]}}</p>
-        <p>Date: {{comment[4]}}</p>
-        <div class="w3-content">
-          <p>Written by: <b>{{comment[3]}}</b></p>
-        </div>
-        <div class="table-div">
-          <table>
-            <tr>
-              <th>
-                <form action="" method="post">
-                  <button style="color: white; background-color: #f44336;" name="bike_id" type="submit"
-                    value="{{comment[7]}}up">Upvote</button>
-                </form>
-              </th>
-              <th>
-                <form action="" method="post">
-                  <button style="color: white; background-color: #f44336;" name="bike_id" type="submit"
-                    value="{{comment[7]}}down">Downvote</button>
-                </form>
-              </th>
-            </tr>
-            <tr>
-              <td style="width: 20px">{{comment[5]}}</td>
-              <td style="width: 20px">{{comment[6]}}</td>
-            </tr>
-          </table>
-        </div>
+      <div class="w3-twothird">
+        <table class="w3-table-all">
+          <tr class="table-headers">
+            <th>Price</th>
+            <th>Price</th>
+            <th>Payment Method</th>
+            <th>Date Taken</th>
+            <th>Date Return</th>
+            <th>Owner</th>
+            <th>Owner Phone</th>
+            <th>Country</th>
+            {% for state in taken %}
+          <tr>
+            <th>{{state[0]}}</th>
+            <th>{{state[0]}}</th>
+            <th>{{state[1]}}</th>
+            <th>{{state[2]}}</th>
+            <th>{{state[3]}}</th>
+            <th>{{state[4]}}</th>
+            <th>{{state[5]}}</th>
+            <th>{{state[6]}}</th>
+          </tr>
+          {% endfor %}
+        </table>
       </div>
     </div>
-    <div style="margin-left: 30%; margin-top: -10px">
-
-
-    </div>
-    {% endfor %}
   </div>
+
   <footer class="footerRentChain">
     <div>
       <a style="text-decoration: none;" href="https://github.com/itucsdb1919/itucsdb1919"><i style="margin-left: 10px;"
@@ -266,10 +229,9 @@
         LinkedIn</a>
       <a style="text-decoration: none;" href="help"><i style="margin-left: 10px;" class="fa fa-question-circle"></i>
         Support</a>
+
     </div>
   </footer>
-
-
 
 </body>
 
