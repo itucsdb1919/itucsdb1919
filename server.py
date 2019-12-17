@@ -163,7 +163,7 @@ def support_page():
         dateTimeObj = datetime.now()
         thedate = dateTimeObj.strftime("%d-%b-%Y (%H:%M:%S.%f)")
         print(details,nickname,topic,thedate)
-        query = "INSERT INTO \"SupportTickets\" (writer_nickname, writen_date, support_text, topic, satisfaction_score, is_answered, support_worker_id)VALUES ('" + nickname + "','" + thedate + "', '" + details + "', '"+ topic + "','0', '0', '1')"
+        query = "INSERT INTO \"SupportTickets\" (writer_nickname, writen_date, support_text, topic, satisfaction_score, is_answered, support_worker_id)VALUES ('" + nickname + "','" + thedate + "', '" + details + "', '"+ topic + "','0', '0', '2')"
         executeSQL(query,"insert")
         return redirect(url_for('home_page'))
         
