@@ -31,8 +31,6 @@ def executeSQL(sqlCode,operation):
     except (Exception, dbapi2.Error) as error:
         print("Error while connecting to PostgreSQL", error)
 
-#def insertBike(title, color, frame_size, price, is_active, parts_id ,owner_nickname, city, country, model_id):
-
 app = Flask(__name__)
 app.secret_key = "super secret key"
 
@@ -93,13 +91,6 @@ def bike_page():
             executeSQL("UPDATE  \"Bikes\" SET is_active = 'f' WHERE bike_id = " + rented_bike_id, "insert")
 
             return redirect(url_for('bike_page'))
-
-        #elif bike_id[-4:] == "fltr":
-        #    filter_id = bike_id[:-4]
-        #    filterSQL = ""
-        #    filter = executeSQL(filterSQL, 'select')
-        #
-        #    return render_template("bikes_filter.html" , filter= filter)
 
         elif bike_id[-4:] == "brnd":
             filter_id = bike_id[:-4]
@@ -173,9 +164,7 @@ def support_page():
         thedate = dateTimeObj.strftime("%d-%b-%Y (%H:%M:%S.%f)")
         print(details,nickname,topic,thedate)
         query = "INSERT INTO \"SupportTickets\" (writer_nickname, writen_date, support_text, topic, satisfaction_score, is_answered, support_worker_id)VALUES ('" + nickname + "','" + thedate + "', '" + details + "', '"+ topic + "','0', '0', '1')"
-        # print(query)
         executeSQL(query,"insert")
-        # return redirect(url_for('home_page'))
         return redirect(url_for('home_page'))
         
     else:
@@ -189,8 +178,6 @@ def signin_page():
         nickname = request.form['nickname']     
         query = executeSQL("SELECT T1.profil_nickname,T1.profil_id, T1.name from \"Profil\" as T1 LEFT JOIN \"Contact\"  AS T2 ON T1.profil_id = T2.profil where T1.surname ='" + surname + "'AND T2.is_active = 't'","select")
         if(query[0][0] == nickname):
-            #succesfullL this code is complated
-            #login_system()
             session['my_profile_id'] = query[0][1]
             session['logged_in'] = True
             session['nickname'] = nickname
@@ -230,24 +217,6 @@ def addcomments_page():
 
             commentsql = "INSERT INTO \"Comments\"(comment, title, image_url,written_date, up_vote, down_vote, writer_nickname,bike_id)VALUES ('" + comment + "','" + title + "', '" + image_url + "', '" + str(thedate) + "', '" + '0' + "', '" + '0' + "', '" + session['nickname'] + "', '" + session['bike_id'] + "')"
             executeSQL(commentsql,"insert")
-
-            print(title,writer_name,image_url,comment)
-            # partssql = "INSERT INTO \"Parts\"(gidon, aktarici, sele,jant, lastik, pedal)VALUES ('" + gidon + "','" + aktarici + "', '" + sele + "', '"+ jant + "', '"+ lastik + "', '"+ pedal +"')"
-            # executeSQL(modelsql,"insert" )
-            # executeSQL(partssql,"insert" )
-
-            
-            # model_id = executeSQL("SELECT MAX(model_id) from \"Model\"  ","select" )
-            # parts_id = executeSQL("SELECT MAX(parts_id) from \"Parts\"  ","select" )
-            # parts_id = parts_id[0][0]
-            # model_id = model_id[0][0]
-            # print (parts_id, model_id)
-            # bikesql = "INSERT INTO \"Bikes\"(is_active, title, color, frame_size, price, parts_id ,owner_nickname ,city, country,model_id)VALUES ('t','" + title + "','" + color + "', '" + frame_size + "', '"+ price + "', '"+ str(parts_id) + "', '"+ str(session['nickname']) + "', '"+ city + "', '"+ country + "', '"+ str(model_id) + "')"
-            # executeSQL(bikesql,"insert" )
-            # bike_id = executeSQL("SELECT MAX(bike_id) from \"Bikes\"  ","select")
-            # bike_id = bike_id[0][0]
-            # imagesql = "INSERT INTO \"Bike_images\"(bike_id,image_url)VALUES('"+str(bike_id)+"','"+str(image_url)+"')"
-            # executeSQL(imagesql,"insert" )
             
             return redirect(url_for("bike_page")) 
 
@@ -386,6 +355,3 @@ def delete_page():
 
 if __name__ == "__main__":
     app.run()
-
-
-
