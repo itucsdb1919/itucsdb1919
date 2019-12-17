@@ -90,6 +90,7 @@ def bike_page():
                       "(select profil_nickname from \"Profil\" where profil_id = " + str(renting_user) + " ) )) as renter_phone, bike_id, city, country " \
                       "from \"Bikes\" where bike_id = '" + rented_bike_id + "'"
             executeSQL(dealSQL, "insert")
+            executeSQL("UPDATE  \"Bikes\" SET is_active = 'f' WHERE bike_id = " + rented_bike_id, "insert")
 
             return redirect(url_for('bike_page'))
 
