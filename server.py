@@ -68,7 +68,7 @@ def bike_page():
             detail = executeSQL(detailSQL, "select")
             images = executeSQL(imagesSQL, "select")
             comments = executeSQL(commentsSQL, "select")
-
+            session['bike_id'] = bike_id
             return render_template("bike_detail.html", detail= detail, images=images, comments= comments)
 
         elif bike_id[-2:] == "up" or bike_id[-4:] == "down":
@@ -187,13 +187,14 @@ def signin_page():
     if request.method == "POST":
         surname = request.form['surname']
         nickname = request.form['nickname']     
-        query = executeSQL("SELECT T1.profil_nickname,T1.profil_id from \"Profil\" as T1 LEFT JOIN \"Contact\"  AS T2 ON T1.profil_id = T2.profil where T1.surname ='" + surname + "'AND T2.is_active = 't'","select")
+        query = executeSQL("SELECT T1.profil_nickname,T1.profil_id, T1.name from \"Profil\" as T1 LEFT JOIN \"Contact\"  AS T2 ON T1.profil_id = T2.profil where T1.surname ='" + surname + "'AND T2.is_active = 't'","select")
         if(query[0][0] == nickname):
             #succesfullL this code is complated
             #login_system()
             session['my_profile_id'] = query[0][1]
             session['logged_in'] = True
             session['nickname'] = nickname
+            session['name'] = query[0][2]
             print(query[0][0],nickname,query[0][1])
             return render_template("homepage.html")
         else:
@@ -211,6 +212,44 @@ def logout_page():
         return redirect(url_for("signin_page"))
     else:
         return redirect(url_for("home_page"))        
+
+
+
+@app.route("/addcomment", methods=['GET','POST'])
+def addcomments_page():
+    if(session['logged_in']):
+        if request.method == "GET":
+            return render_template("addcomment.html")
+        if request.method == "POST":
+            title = request.form['title']
+            writer_name = request.form['writer_name']
+            image_url = request.form['image_url']         
+            comment = request.form['comment']
+            dateTimeObj = datetime.now()
+            thedate = dateTimeObj.strftime("%d-%b-%Y (%H:%M:%S.%f)")
+
+            commentsql = "INSERT INTO \"Comments\"(comment, title, image_url,written_date, up_vote, down_vote, writer_nickname,bike_id)VALUES ('" + comment + "','" + title + "', '" + image_url + "', '" + str(thedate) + "', '" + '0' + "', '" + '0' + "', '" + session['nickname'] + "', '" + session['bike_id'] + "')"
+            executeSQL(commentsql,"insert")
+
+            print(title,writer_name,image_url,comment)
+            # partssql = "INSERT INTO \"Parts\"(gidon, aktarici, sele,jant, lastik, pedal)VALUES ('" + gidon + "','" + aktarici + "', '" + sele + "', '"+ jant + "', '"+ lastik + "', '"+ pedal +"')"
+            # executeSQL(modelsql,"insert" )
+            # executeSQL(partssql,"insert" )
+
+            
+            # model_id = executeSQL("SELECT MAX(model_id) from \"Model\"  ","select" )
+            # parts_id = executeSQL("SELECT MAX(parts_id) from \"Parts\"  ","select" )
+            # parts_id = parts_id[0][0]
+            # model_id = model_id[0][0]
+            # print (parts_id, model_id)
+            # bikesql = "INSERT INTO \"Bikes\"(is_active, title, color, frame_size, price, parts_id ,owner_nickname ,city, country,model_id)VALUES ('t','" + title + "','" + color + "', '" + frame_size + "', '"+ price + "', '"+ str(parts_id) + "', '"+ str(session['nickname']) + "', '"+ city + "', '"+ country + "', '"+ str(model_id) + "')"
+            # executeSQL(bikesql,"insert" )
+            # bike_id = executeSQL("SELECT MAX(bike_id) from \"Bikes\"  ","select")
+            # bike_id = bike_id[0][0]
+            # imagesql = "INSERT INTO \"Bike_images\"(bike_id,image_url)VALUES('"+str(bike_id)+"','"+str(image_url)+"')"
+            # executeSQL(imagesql,"insert" )
+            
+            return redirect(url_for("bike_page")) 
 
 
 @app.route("/mybikes", methods=['GET','POST'])

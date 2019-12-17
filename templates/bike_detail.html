@@ -50,6 +50,21 @@ body {
   margin: 0;
 }
 
+  .btn1 {
+    background: #333;
+    width: 125px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: white;
+    border-radius: 4px;
+    border: #27ae60 1px solid;
+
+    margin-top: 70px;
+    margin-right: 70px;
+
+    font-weight: 800;
+    font-size: 0.8em;
+  }
 .navbar a:hover, .dropdown:hover .dropbtn {
   background-color: #f44336;
 }
@@ -119,10 +134,31 @@ body {
       </div>
     </div>
     <div id="sign">
-        <a href="login">Login</a>
-        <a href="register">Register</a>
+      {% if not session.logged_in %}
+      <a href="login">Login</a>
+      <a href="register">Register</a>
+      {% else %}
+      <div class="dropdown">
+        <button class="dropbtn">Profil
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="mybikes">My Bikes</a>
+          <a href="mydeals">My Deals</a>
+          <a href="settings">Settings</a>
+          <a href="logout">Logout</a>
+        </div>
+      </div>
+      {% endif %}
     </div>
 </div>
+
+<div>
+  <a href="addcomment" > 
+    <button class="btn1 btn-primary" style="float: right;">Add Comment</button>
+  </a>
+</div>
+
 
 <div class="table-div" style="margin-bottom: 400px;">
     <div class="w3-content">
