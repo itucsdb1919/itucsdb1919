@@ -20,10 +20,11 @@ def executeSQL(sqlCode,operation):
             cursor.close()
             connection.close()
             return data
-        if(operation == "insert"):
+        if(operation == "insert" or "update"):
             connection.commit()
             cursor.close()
             connection.close()  
+        
             
 
     except (Exception, dbapi2.Error) as error:
@@ -98,11 +99,13 @@ def signup_page():
         name = request.form['name']
         surname = request.form['surname']
         nickname = request.form['nickname']
-        image_url = request.form['image_url']
-        print(name,surname,nickname,image_url)
-        query = "INSERT INTO \"Profil\" (\"name\", \"surname\", \"profil_nickname\", \"profil_image\", \"number_of_bikes\", \"number_of_deals\")VALUES ('" + name + "', '" + surname + "', '"+ nickname + "','" + image_url + "', '0', '0')"
-        print(query)
+        query = "INSERT INTO \"Profil\" (\"name\", \"surname\", \"profil_nickname\", \"profil_image\", \"number_of_bikes\", \"number_of_deals\")VALUES ('" + name + "', '" + surname + "', '"+ nickname + "','" + '' + "', '0', '0')"
         executeSQL(query,"insert")
+        query = "SELECT profil_id from \"Profil\" WHERE profil_nickname = '" + nickname +"'"
+        query = executeSQL(query,"select")
+        print(query)
+        sqldelete = "INSERT INTO  \"Contact\" (is_active, profil)VALUES('t','"+ str(query[0][0]) +"')"
+        executeSQL(sqldelete,"update")
         return redirect(url_for('home_page'))
         
     else:
@@ -131,14 +134,15 @@ def signin_page():
     session['logged_in'] = False
     if request.method == "POST":
         surname = request.form['surname']
-        nickname = request.form['nickname']
-        query = executeSQL("SELECT profil_nickname from \"Profil\" where surname = '"+ surname+"'", "select")
+        nickname = request.form['nickname']     
+        query = executeSQL("SELECT T1.profil_nickname,T1.profil_id from \"Profil\" as T1 LEFT JOIN \"Contact\"  AS T2 ON T1.profil_id = T2.profil where T1.surname ='" + surname + "'AND T2.is_active = 't'","select")
         if(query[0][0] == nickname):
             #succesfullL this code is complated
             #login_system()
+            session['my_profile_id'] = query[0][1]
             session['logged_in'] = True
             session['nickname'] = nickname
-            print(query[0][0],nickname)
+            print(query[0][0],nickname,query[0][1])
             return render_template("homepage.html")
         else:
             return render_template("login.html")
@@ -150,10 +154,11 @@ def logout_page():
     if(session['logged_in']):
         session['logged_in'] = False
         session.pop('nickname', None)
+        session.pop('my_profile_id', None)
         flash('You were logged out')
-        return redirect(url_for('signin_page'))
+        return redirect(url_for("signin_page"))
     else:
-        return redirect(url_for(home_page))        
+        return redirect(url_for("home_page"))        
 
 
 @app.route("/mybikes", methods=['GET','POST'])
@@ -180,17 +185,42 @@ def mydeals_page():
         session['logged_in'] = False
         session.pop('nickname', None)
         flash('You were logged out')
-        return redirect(url_for('signin_page'))
+        return redirect(url_for("signin_page"))
     else:
-        return redirect(url_for(home_page))
+        return redirect(url_for("home_page"))
 
 @app.route("/settings", methods=['GET','POST'])
 def settings_page():
     if(session['logged_in']):
         if request.method == "GET":
-            return render_template("settings.html")
+            sqlprofile = executeSQL("SELECT name, surname, profil_nickname, profil_image, number_of_bikes, number_of_deals, profil_id from \"Profil\" WHERE profil_nickname = '" + session['nickname']+"'" ,"select")
+            sqlcontact = executeSQL("SELECT contact_id, e_mail, is_active, instagram_url, facebook_url, twitter_url, country, profil, city, phone_num from \"Contact\" WHERE profil = " + str(session['my_profile_id']),"select")
+            return render_template("settings.html",sqlprofile = sqlprofile, sqlcontact = sqlcontact)
         if request.method == "POST":
-            return redirect(url_for(home_page))
+            name = request.form['name']
+            surname = request.form['surname']
+            profile_image = request.form['profile_image']
+            email = request.form['email']
+            instagram_url = request.form['instagram_url']
+            facebook_url = request.form['facebook_url']
+            twitter_url = request.form['twitter_url']
+            country = request.form['country']
+            city = request.form['city']
+            phone_num = request.form['phone_num']
+            sqlprofile = "UPDATE \"Profil\" SET name = '" + name + "', surname = '" + surname + "', profil_image = '" + profile_image + "' WHERE profil_id = " + str(session['my_profile_id'])
+            sqlcontact = "UPDATE \"Contact\" SET e_mail = '" + email + "', instagram_url = '" + instagram_url + "', facebook_url = '" + facebook_url + "', twitter_url = '" + twitter_url + "', country = '" + country + "', city = '" + city + "', phone_num = '" + phone_num + "' WHERE profil = " + str(session['my_profile_id'])
+            executeSQL(sqlprofile,"update")
+            executeSQL(sqlcontact,"update")
+            return redirect(url_for("settings_page"))
+
+@app.route("/delete_account_28392", methods=['GET'])
+def delete_page():
+    if(session['logged_in']):
+        if request.method == "GET":
+            sqldelete = "UPDATE \"Contact\" SET is_active = 'f' WHERE profil = " + str(session['my_profile_id'])
+            executeSQL(sqldelete,"update")
+            return redirect(url_for("home_page"))
+
 
 if __name__ == "__main__":
     app.run()
