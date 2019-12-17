@@ -166,6 +166,7 @@
               <th>Color</th>
               <th>Owner</th>
               <th>Details</th>
+              <th>Delete</th>
             {% for state in bikes %}
             <tr>
               <th><img src={{state[3]}} style="max-height: 150px; max-width: 150px;"></th>
@@ -175,6 +176,11 @@
               <th>
                   <form action="" method="post">
                       <button style="background-color: #f44336;" name="bike_id" type="submit" value="{{state[4]}}">Details</button>
+                  </form>
+              </th>
+              <th>
+                  <form action="" method="post">
+                      <button style="background-color: #f44336;" name="bike_id" type="submit" value="{{state[4]}}del">Delete</button>
                   </form>
               </th>
             </tr>
