@@ -140,7 +140,7 @@ latex_documents = [
 # (source start file, name, description, authors, manual section).
 man_pages = [
     (master_doc, 'itucsdb1919', 'ITUCSDB1919 Documentation',
-     [author], 1)
+     ['RentChain'], 1)
 ]
 
 
@@ -151,7 +151,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
     (master_doc, 'ITUCSDB1919', 'ITUCSDB1919 Documentation',
-     author, 'ITUCSDB1919', 'One line description of project.',
+     'RentChain', 'ITUCSDB1919', 'One line description of project.',
      'Miscellaneous'),
 ]
 

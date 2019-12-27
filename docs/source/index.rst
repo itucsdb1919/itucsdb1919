@@ -11,7 +11,10 @@ Welcome to itucsdb1919's documentation!
    * Daler Rahimjonov 150140906
 
 **project description goes here (a few paragraphs)**
-RentChain is a bike renting platform which provides its services all over the world. Main advantage of the RentChain is its ability to connect bike owners and bike enthusiasts in a few clicks. RentChain provides users with available bikes and provides reviews of bikes for a better user experience. Every bike owner can publish their bike so other users can see its condition and reviews and later on rent it.
+RentChain is a bike renting platform which provides its services all over the world.
+Main advantage of the RentChain is its ability to connect bike owners and bike enthusiasts in a few clicks. 
+RentChain provides users with available bikes and provides reviews of bikes for a better user experience. 
+Every bike owner can publish their bike so other users can see its condition and reviews and later on rent it.
 
 Contents:
 
