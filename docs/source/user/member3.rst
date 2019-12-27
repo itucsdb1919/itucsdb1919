@@ -1,7 +1,7 @@
 Parts Implemented by Muhammed Kozan
 ================================
 
-Register, Login and settings pages are created by Ahmet Yemliha Öner. As you can imagine all of these pages are mainly related to users. Also login management system for users is implemented by Ahmet Yemliha Öner using Flask-login.
+Countries, cities, brands and my deals pages are created by Muhammed Kozan. As you can imagine all of these pages are mainly related to users. Also login management system for users is implemented by Ahmet Yemliha Öner using Flask-login.
 
 Countries
 ------
@@ -44,7 +44,7 @@ You can see the settings page of RentChain below.
 
      Brands page where users can see about Brands information
 
-My- Deals
+My Deals
 --------
 
 

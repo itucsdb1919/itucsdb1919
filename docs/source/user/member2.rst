@@ -1,7 +1,7 @@
 Parts Implemented by Habib Bartu Gökalp
 ================================
 
-Register, Login and settings pages are created by Ahmet Yemliha Öner. As you can imagine all of these pages are mainly related to users. Also login management system for users is implemented by Ahmet Yemliha Öner using Flask-login.
+Bikes, bike details and comments pages are created by Habib Bartu Gökalp. As you can imagine all of these pages are mainly related to users.
 
 Bikes
 ------
