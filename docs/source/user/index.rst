@@ -14,9 +14,7 @@ screenshots whereever appropriate**
 
 .. toctree::
 
-   member1
-   member2
-   member3
-   member4
-   member5
-   
+   Ahmet Yemliha Öner
+   Habib Bartu Gökalp
+   Muhammed Kozan
+   Daler Rahimjonov   

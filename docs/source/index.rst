@@ -1,17 +1,17 @@
 Welcome to itucsdb1919's documentation!
 =====================================
 
-:Team: Team Name
+:Team: RentChain
 
 :Members:
 
-   * Member 1
-   * Member 2
-   * Member 3
-   * Member 4
-   * Member 5
+   * Ahmet Yemliha Öner 150150148
+   * Habib Bartu Gökalp 150160121
+   * Muhammed Kozan 150160005
+   * Daler Rahimjonov 150140906
 
 **project description goes here (a few paragraphs)**
+RentChain is a bike renting platform which provides its services all over the world. Main advantage of the RentChain is its ability to connect bike owners and bike enthusiasts in a few clicks. RentChain provides users with available bikes and provides reviews of bikes for a better user experience. Every bike owner can publish their bike so other users can see its condition and reviews and later on rent it.
 
 Contents:
 
